@@ -1,0 +1,78 @@
+{
+    "definitions": {
+        "options": {}
+    },
+    "title": "",
+    "type": "object",
+    "properties": {
+        "claim": {
+            "title": "Claim",
+            "type": "object",
+            "required": ["text"],
+            "properties": {
+                "text": {
+                    "title": "Text",
+                    "type": "string",
+                    "default": "Lasst unser Internet in Ruhe!"
+                }
+            }
+        },
+        "size": {
+            "type": "object",
+            "title": "Größe",
+            "properties": {
+                "size": {
+                    "type": "string",
+                    "title": "",
+                    "oneOf": [
+                        {
+                            "title": "1200x675 (Twitter, Facebook)",
+                            "const": "1200x675"
+                        },
+                        {
+                            "title": "1200x1200 (Facebook, Instagram)",
+                            "const": "1200x1200"
+                        },
+                        {
+                            "title": "675x1200",
+                            "const": "675x1200"
+                        },
+                        {
+                            "title": "Manuell",
+                            "const": "custom"
+                        }
+                    ],
+                    "default": "1200x675"
+                }
+            },
+            "dependencies": {
+                "size": {
+                    "oneOf": [
+                        {
+                                "properties": {
+                                    "size":                         {
+                                        "enum": ["1200x675", "1200x1200", "675x1200"]
+                                    }
+                            },
+                            "required": ["size"]
+                        },
+                        {
+                            "properties": {
+                                "size": {
+                                    "enum": ["custom"]
+                                },
+                                "width": {"title": "Breite", "type":  "number", "minimum": 500, "maximum": 2000, "multipleOf": 10,
+                                    "default": 1000
+                                },
+                                "height": {"title": "Höhe", "type":  "number", "minimum": 500, "maximum": 2000, "multipleOf": 10,
+                                    "default": 1000
+                                }
+                            },
+                            "required": ["size","width", "height"]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+  }
