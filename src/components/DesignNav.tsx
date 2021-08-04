@@ -19,7 +19,7 @@ const DesignNav: React.FC<DesignNavProps> = ({ designs }) => {
         <NavDropdown id="designnav" title={designs[design].title}>
           {Object.entries(designs).map(([name, design]) => {
             return (
-              <NavDropdown.Item as={NavLink} to={"/" + name}>
+              <NavDropdown.Item as={NavLink} to={"/" + name} key={name}>
                 {design.title}
               </NavDropdown.Item>
             );

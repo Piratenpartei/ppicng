@@ -61,10 +61,10 @@
                                 "size": {
                                     "enum": ["custom"]
                                 },
-                                "width": {"title": "Breite", "type":  "number", "minimum": 500, "maximum": 2000, "multipleOf": 10,
+                                "width": {"title": "Breite", "type":  "number", "minimum": 500, "maximum": 2000,
                                     "default": 1000
                                 },
-                                "height": {"title": "Höhe", "type":  "number", "minimum": 500, "maximum": 2000, "multipleOf": 10,
+                                "height": {"title": "Höhe", "type":  "number", "minimum": 500, "maximum": 2000,
                                     "default": 1000
                                 }
                             },

@@ -5,19 +5,24 @@ import ImagePreview from "./ImagePreview";
 import { useState, useRef } from "react";
 import { Container, Col } from "react-bootstrap";
 import ResizeObserver from "rc-resize-observer";
-import Konva from "konva"
-
+import Konva from "konva";
 
 interface EditorProps {
   designs: Record<string, DesignInterface>;
   onScaleChange?: (scale: number) => void;
   stageRef?: React.RefObject<Konva.Stage>;
+  pageState: number;
 }
 interface EditorParams {
   design: string;
 }
 
-const Editor: React.FC<EditorProps> = ({ designs, onScaleChange, stageRef }) => {
+const Editor: React.FC<EditorProps> = ({
+  designs,
+  onScaleChange,
+  stageRef,
+  pageState,
+}) => {
   const { design } = useParams<EditorParams>();
 
   const [formData, setFormData] = useState({});
@@ -71,13 +76,17 @@ const Editor: React.FC<EditorProps> = ({ designs, onScaleChange, stageRef }) => 
     <>
       <Col
         md={5}
-        className="h-100 overflow-auto d-md-flex flex-column tab-pane"
+        className={
+          "h-100 overflow-auto d-md-flex flex-column tab-pane" +
+          (pageState === 0 ? " active" : "")
+        }
       >
         <Container className="pt-3 pb-3">
           <DesignPanel
             design={designs[design]}
             formData={formData}
             onFormDataChange={(e) => {
+              if (e.errors.length > 0) return;
               setFormData(e.formData);
               if (e.formData?.size?.size === "custom") {
                 setWidth(e.formData.size.width);
@@ -94,7 +103,10 @@ const Editor: React.FC<EditorProps> = ({ designs, onScaleChange, stageRef }) => 
       <ResizeObserver onResize={previewResize}>
         <Col
           md={7}
-          className="my-auto mx-auto h-100 d-md-flex tab-pane imagePreviewCol"
+          className={
+            "my-auto mx-auto h-100 d-md-flex tab-pane imagePreviewCol" +
+            (pageState === 1 ? " active d-flex" : "")
+          }
           ref={imagePanelRef}
         >
           <Container className="my-auto imagePreviewContainer">
@@ -105,6 +117,7 @@ const Editor: React.FC<EditorProps> = ({ designs, onScaleChange, stageRef }) => 
               realWidth={width}
               realHeight={height}
               stageRef={stageRef}
+              formData={formData}
             />
           </Container>
         </Col>

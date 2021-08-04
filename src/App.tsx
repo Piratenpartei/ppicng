@@ -1,5 +1,12 @@
-import { useRef } from "react";
-import { Container, Col, Row, Navbar, Button } from "react-bootstrap";
+import { useRef, useState } from "react";
+import {
+  Container,
+  Col,
+  Row,
+  Navbar,
+  Button,
+  ButtonGroup,
+} from "react-bootstrap";
 import "./custom.scss";
 import "./App.css";
 import DesignNav from "./components/DesignNav";
@@ -16,9 +23,12 @@ const onScaleChange = (scale: number) => {
 function App() {
   const stageRef = useRef<Konva.Stage>(null);
 
-  const downloadImage = () => {
+  const [pageState, setPageState] = useState(0);
+
+  const downloadImage = (showLines:boolean) => {
     if (stageRef?.current) {
-      stageRef.current.find("Transformer").forEach((tf) => {
+      //console.log("test1", stageRef.current.find(".divider"))
+      stageRef.current.find("Transformer, .divider").forEach((tf) => {
         tf.hide();
       });
       var link = document.createElement("a");
@@ -27,9 +37,12 @@ function App() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      stageRef.current.find("Transformer").forEach((tf) => {
+      if (showLines) {
+             stageRef.current.find("Transformer, .divider").forEach((tf) => {
         tf.show();
-      });
+             
+      }); 
+    }
     }
   };
 
@@ -46,7 +59,39 @@ function App() {
                       <strong>ppic:</strong>ng
                     </Navbar.Brand>
                     <DesignNav designs={designs} />
-                    <Button variant="primary" onClick={downloadImage}>
+                    <Button variant="primary" onClick={() => downloadImage(false)} className="d-md-block d-none">
+                      Download
+                    </Button>
+                  </Container>
+                </Navbar>
+              </Row>
+              <Row className="flex-row d-md-none d-flex">
+                <Navbar bg="light" variant="light" className="w-100">
+                  <Container fluid className="justify-content-center">
+                    {" "}
+                    <ButtonGroup>
+                      <Button
+                        variant={pageState === 0 ? "primary" : "outline-primary"}
+                        onClick={() => {
+                          setPageState(0);
+                        }}
+                      >
+                        Editor
+                      </Button>
+                      <Button
+                        variant={pageState === 1 ? "primary" : "outline-primary"}
+                        onClick={() => {
+                          setPageState(1);
+                        }}
+                      >
+                        Vorschau
+                      </Button>
+                    </ButtonGroup>
+                    <Button
+                      variant="primary"
+                      onClick={() => downloadImage(true)}
+                      className="ml-5 d-md-none d-block"
+                    >
                       Download
                     </Button>
                   </Container>
@@ -57,6 +102,7 @@ function App() {
                   designs={designs}
                   onScaleChange={onScaleChange}
                   stageRef={stageRef}
+                  pageState={pageState}
                 />
               </Row>
             </Col>

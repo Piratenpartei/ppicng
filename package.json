@@ -12,6 +12,8 @@
     "@types/react": "^16.14.11",
     "@types/react-dom": "^16.9.14",
     "bootstrap": "^4.6.0",
+    "calculate-text-width": "^0.0.3",
+    "canvas-text-wrapper": "^0.10.2",
     "konva": "^8.1.1",
     "lodash": "^4.17.21",
     "rc-resize-observer": "^1.0.0",

@@ -3,9 +3,10 @@ import Form from "@rjsf/bootstrap-4";
 import { JSONSchema7 } from "json-schema";
 import _ from "lodash";
 import DesignInterface from "./interfaces/DesignInterface";
-import { IChangeEvent } from "@rjsf/core";
+import { AjvError, IChangeEvent } from "@rjsf/core";
 import CircleColorWidget from "./widgets/CircleColorWidget";
 import ToggleButtonWidget from "./widgets/ToggleButtonWidget";
+import BootstrapFileWidget from "./widgets/BootstrapFileWidget";
 
 interface DesignPanelProps {
   design: DesignInterface;
@@ -24,6 +25,22 @@ const DesignPanel: React.FC<DesignPanelProps> = ({
   const widgets = {
     circlecolor: CircleColorWidget,
     togglebutton: ToggleButtonWidget,
+    file: BootstrapFileWidget,
+  };
+
+  const transformErrors = (errors: AjvError[]) => {
+    //console.log("errors", errors);
+    let newErrors: AjvError[] = [];
+    let alreadydone: Array<string> = [];
+    errors.forEach((error) => {
+      if (error.name === "oneOf") return;
+      if (error.name === "const") return;
+      if (error.name === "enum") return;
+      if (alreadydone.includes(error.stack)) return;
+      alreadydone = alreadydone.concat(error.stack);
+      newErrors = newErrors.concat(error);
+    });
+    return newErrors;
   };
 
   return (
@@ -34,6 +51,8 @@ const DesignPanel: React.FC<DesignPanelProps> = ({
       formData={formData}
       onChange={onFormDataChange}
       widgets={widgets}
+      showErrorList={false}
+      transformErrors={transformErrors}
     />
   );
 };
