@@ -53,7 +53,9 @@ const DesignPanel: React.FC<DesignPanelProps> = ({
       widgets={widgets}
       showErrorList={false}
       transformErrors={transformErrors}
-    />
+    >
+      <div></div>
+    </Form>
   );
 };
 
