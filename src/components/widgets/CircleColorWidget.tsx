@@ -5,15 +5,16 @@ const CircleColorWidget: React.FC<WidgetProps> = ({
   value,
   options,
   onChange,
+  label
 }) => {
   const enumOptions = options?.enumOptions as Array<{ value: string }>;
 
   return (
-    <CirclePicker
+    <>{label}<CirclePicker
       color={value}
       colors={enumOptions.map((option) => option.value)}
       onChange={(color) => onChange(color.hex)}
-    />
+    /></>
   );
 };
 
