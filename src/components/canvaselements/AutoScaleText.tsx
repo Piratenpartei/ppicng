@@ -22,30 +22,32 @@ const wrapText = (
   width: number,
   height: number,
   font: string,
-  lineHeight: number = 1
-): { lines: Array<string>; maxWidth: number; lineWidths: Array<number> } => {
+  lineHeight: number = 1,
+  reverse: boolean = false
+): { lines: string[][]; maxWidth: number; lineWidths: Array<number> } => {
   const spaceWidth = calculateTextWidth(" ", fontSize + "px " + font);
 
-  const textParagraphs = text.split("\n");
+  const textParagraphs = text.split("\n").reverse();
 
-  let lines: Array<string> = [];
+  let lines: string[][] = [];
   let lineWidths: Array<number> = [];
   let maxWidth = 0;
 
   textParagraphs.forEach((paragraph) => {
-    const words = paragraph
+    let words = paragraph
       .replace(/\s/g, "\n")
       //.replace(/-/g, "-\n")
       .split("\n");
+    words = reverse ? words.reverse() : words;
     const wordWidths = words.map((word) =>
       calculateTextWidth(word, fontSize + "px " + font)
     );
 
-    let currentLine = words.shift() as string;
+    let currentLine = [words.shift() as string];
     let currentWidth = wordWidths.shift();
     while (true) {
       if (words.length === 0) {
-        lines = lines.concat(currentLine);
+        lines = lines.concat([reverse ? currentLine.reverse() : currentLine]);
         lineWidths = lineWidths.concat(currentWidth);
         maxWidth = Math.max(maxWidth, currentWidth);
         break;
@@ -53,18 +55,22 @@ const wrapText = (
         words.length > 0 &&
         currentWidth + spaceWidth + wordWidths[0] > width
       ) {
-        lines = lines.concat(currentLine);
+        lines = lines.concat([reverse ? currentLine.reverse() : currentLine]);
         lineWidths = lineWidths.concat(currentWidth);
         maxWidth = Math.max(maxWidth, currentWidth);
-        currentLine = words.shift() as string;
+        currentLine = [words.shift() as string];
         currentWidth = wordWidths.shift();
       } else {
-        currentLine += " " + (words.shift() as string);
+        currentLine = currentLine.concat(words.shift() as string);
         currentWidth += spaceWidth + wordWidths.shift();
       }
     }
   });
-  return { lines: lines, maxWidth: maxWidth, lineWidths: lineWidths };
+  return {
+    lines: reverse ? lines.reverse() : lines,
+    maxWidth: maxWidth,
+    lineWidths: lineWidths,
+  };
 };
 
 const AutoScaleText: React.FC<AutoScaleTextProps> = ({
@@ -90,7 +96,7 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
 
   let baseFontSize = baseHeight;
 
-  let lines: Array<string> = [];
+  let lines: string[][] = [];
   let lineWidths: Array<number> = [];
   let textHeight = 0;
 
@@ -100,7 +106,15 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
       lines: probeLines,
       maxWidth: probeWidth,
       lineWidths: probeLineWidths,
-    } = wrapText(text, baseFontSize, baseWidth, height, fontFamily, lineHeight);
+    } = wrapText(
+      text,
+      baseFontSize,
+      baseWidth,
+      height,
+      fontFamily,
+      lineHeight,
+      valign == "bottom"
+    );
     lines = probeLines;
     lineWidths = probeLineWidths;
     const probeHeight =
@@ -116,7 +130,13 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
       }
       break;
     } else {
-      baseFontSize *= Math.min(Math.max(baseHeight/probeHeight*1.5, baseWidth/probeWidth*1.5),0.9);
+      baseFontSize *= Math.min(
+        Math.max(
+          (baseHeight / probeHeight) * 1.5,
+          (baseWidth / probeWidth) * 1.5
+        ),
+        0.9
+      );
     }
     if (n++ > 20) break;
   }
@@ -124,7 +144,6 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
   const fontSize = (height / baseHeight) * baseFontSize * factor1;
   lineWidths = lineWidths.map((x) => (x * fontSize) / baseFontSize);
   textHeight *= fontSize / baseFontSize;
-
   return (
     <Group x={x} y={y} width={width} height={height}>
       {/* <Rect x={0} y={0} width={width} height={height} stroke="black" /> */}
@@ -132,7 +151,7 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
         <Text
           align={align}
           key={index}
-          text={line}
+          text={line.join(" ")}
           x={
             align === "right"
               ? width - lineWidths[index]
