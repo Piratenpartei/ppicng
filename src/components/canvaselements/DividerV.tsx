@@ -29,7 +29,6 @@ const DividerV: React.FC<DividerVProps> = ({
 
   useEffect(() => {
     baseX = (lineRef?.current?.absolutePosition().x as number) - x;
-    console.log("baseX", baseX);
   });
   return (
     <Rect
