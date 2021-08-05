@@ -1,4 +1,6 @@
 import { Rect } from "react-konva";
+import { useRef, useEffect } from "react";
+import Konva from "konva";
 
 interface DividerVProps {
   x: number;
@@ -20,15 +22,20 @@ const DividerV: React.FC<DividerVProps> = ({
   onDragMove,
 }) => {
   const limitX = (x: number): number => {
-    return Math.max(
-      minX || -Infinity,
-      Math.min(x, maxX || Infinity)
-    );
+    return Math.max(minX || -Infinity, Math.min(x, maxX || Infinity));
   };
+  const lineRef = useRef<Konva.Rect>(null);
+  let baseX = 0;
+
+  useEffect(() => {
+    baseX = (lineRef?.current?.absolutePosition().x as number) - x;
+    console.log("baseX", baseX);
+  });
   return (
     <Rect
       x={x}
       y={y}
+      ref={lineRef}
       width={1}
       height={height}
       stroke="#0099cc"
@@ -40,16 +47,18 @@ const DividerV: React.FC<DividerVProps> = ({
       draggable
       dragBoundFunc={(pos) => {
         const newpos = {
-          x: limitX(pos.x),
-          y: y,
+          y: lineRef.current?.absolutePosition().y as number,
+          x: baseX + limitX(pos.x - baseX),
         };
         return newpos;
       }}
       onDragEnd={(e) => {
-        if (onDragEnd) onDragEnd(limitX(e.target.attrs.x));
+        const newX = e.target.attrs.x;
+        if (onDragEnd) onDragEnd(limitX(newX));
       }}
       onDragMove={(e) => {
-        if (onDragMove) onDragMove(limitX(e.target.attrs.x));
+        const newX = e.target.attrs.x;
+        if (onDragMove) onDragMove(limitX(newX));
       }}
       onMouseEnter={(e) => {
         const container = e.target.getStage()?.container();
