@@ -5,4 +5,5 @@ export default interface DesignInterface {
   menuSchema: Object;
   menuSchemaUI?: Object;
   Image: React.FC<ImagePreviewProps>;
+  fontFamilies?: string[];
 }

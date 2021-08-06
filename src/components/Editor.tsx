@@ -2,10 +2,11 @@ import DesignPanel from "./DesignPanel";
 import { useParams } from "react-router-dom";
 import DesignInterface from "./interfaces/DesignInterface";
 import ImagePreview from "./ImagePreview";
-import { useState, useRef } from "react";
-import { Container, Col } from "react-bootstrap";
+import { useState, useRef, useEffect } from "react";
+import { Container, Col, Spinner } from "react-bootstrap";
 import ResizeObserver from "rc-resize-observer";
 import Konva from "konva";
+import WebFont from "webfontloader";
 
 interface EditorProps {
   designs: Record<string, DesignInterface>;
@@ -24,6 +25,25 @@ const Editor: React.FC<EditorProps> = ({
   pageState,
 }) => {
   const { design } = useParams<EditorParams>();
+
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+  useEffect(() => {
+    if (designs[design].fontFamilies) {
+      setFontsLoaded(false);
+      setTimeout(() => {
+        WebFont.load({
+          custom: {
+            families: designs[design].fontFamilies,
+          },
+          active: () => {
+            setFontsLoaded(true);
+          },
+        });
+      }, 500);
+    } else {
+      setFontsLoaded(true);
+    }
+  }, [design]);
 
   const [formData, setFormData] = useState({});
 
@@ -110,15 +130,22 @@ const Editor: React.FC<EditorProps> = ({
           ref={imagePanelRef}
         >
           <Container className="my-auto imagePreviewContainer">
-            <ImagePreview
-              design={designs[design]}
-              width={previewWidth}
-              height={previewHeight}
-              realWidth={width}
-              realHeight={height}
-              stageRef={stageRef}
-              formData={formData}
-            />
+            {fontsLoaded && (
+              <ImagePreview
+                design={designs[design]}
+                width={previewWidth}
+                height={previewHeight}
+                realWidth={width}
+                realHeight={height}
+                stageRef={stageRef}
+                formData={formData}
+              />
+            )}
+            {!fontsLoaded && (
+              <Spinner animation="border" role="status" variant="primary">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            )}
           </Container>
         </Col>
       </ResizeObserver>
