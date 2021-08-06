@@ -1,4 +1,4 @@
-import { Group, Text } from "react-konva";
+import { Group, Text, Rect } from "react-konva";
 import calculateTextWidth from "calculate-text-width";
 
 interface AutoScaleTextProps {
@@ -13,6 +13,7 @@ interface AutoScaleTextProps {
   align?: string;
   valign?: string;
   shadowEnabled?: boolean;
+  eline?: string;
   [x: string]: any;
 }
 
@@ -69,7 +70,7 @@ const wrapText = (
   return {
     lines: reverse ? lines.reverse() : lines,
     maxWidth: maxWidth,
-    lineWidths: lineWidths,
+    lineWidths: reverse ? lineWidths.reverse() : lineWidths,
   };
 };
 
@@ -81,6 +82,7 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
   height,
   lineHeight = 1,
   fontFamily,
+  eline,
   align = "left",
   valign = "top",
   color = "#000000",
@@ -99,6 +101,9 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
   let lines: string[][] = [];
   let lineWidths: Array<number> = [];
   let textHeight = 0;
+
+  let elineHeight = 0
+  let elineMargin = 0
 
   let n = 0;
   while (true) {
@@ -121,18 +126,25 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
       probeLines.length * baseFontSize +
       (probeLines.length - 1) * (lineHeight - 1) * baseFontSize;
     textHeight = probeHeight;
-    if (probeHeight <= baseHeight && probeWidth <= baseWidth) {
+
+    elineHeight = eline ? baseFontSize / 7 : 0;
+    elineMargin = eline ? baseFontSize / 15 : 0;
+
+    const testBaseHeight = baseHeight - elineHeight - elineMargin;
+    const testRatio = baseWidth/testBaseHeight
+
+    if (probeHeight <= testBaseHeight && probeWidth <= baseWidth) {
       const probeRatio = probeWidth / probeHeight;
-      if (probeRatio > ratio) {
+      if (probeRatio > testRatio) {
         factor1 = baseWidth / probeWidth;
       } else {
-        factor1 = baseHeight / probeHeight;
+        factor1 = testBaseHeight / probeHeight;
       }
       break;
     } else {
       baseFontSize *= Math.min(
         Math.max(
-          (baseHeight / probeHeight) * 1.5,
+          (testBaseHeight / probeHeight) * 1.5,
           (baseWidth / probeWidth) * 1.5
         ),
         0.9
@@ -141,9 +153,11 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
     if (n++ > 20) break;
   }
 
-  const fontSize = (height / baseHeight) * baseFontSize * factor1;
+  const fontSize = ((height) / (baseHeight)) * baseFontSize * factor1;
   lineWidths = lineWidths.map((x) => (x * fontSize) / baseFontSize);
   textHeight *= fontSize / baseFontSize;
+  elineHeight *= fontSize / baseFontSize
+  elineMargin *= fontSize / baseFontSize
   return (
     <Group x={x} y={y} width={width} height={height}>
       {/* <Rect x={0} y={0} width={width} height={height} stroke="black" /> */}
@@ -160,7 +174,7 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
               : 0
           }
           y={
-            index * fontSize * lineHeight +
+            -elineHeight-elineMargin+index * fontSize * lineHeight +
             (valign === "bottom" ? height - textHeight : 0) +
             (valign === "middle" ? (height - textHeight) / 2 : 0)
           }
@@ -174,6 +188,18 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
           {...additionalProps}
         />
       ))}
+      {eline &&
+      <Rect x={
+        align === "right"
+          ? width - lineWidths[lineWidths.length-1]
+          : align === "center"
+          ? width / 2 - lineWidths[lineWidths.length-1] / 2
+          : 0
+      }           y={
+        lineWidths.length * fontSize * lineHeight +
+        (valign === "bottom" ? height - textHeight : 0) +
+        (valign === "middle" ? (height - textHeight) / 2 : 0)
+      } height={elineHeight} width={lineWidths[lineWidths.length-1]} fill={eline} />}
     </Group>
   );
 };
