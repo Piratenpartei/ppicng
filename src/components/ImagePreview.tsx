@@ -20,21 +20,30 @@ const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
       ref={props.stageRef}
       onTouchStart={(e) => {
         if (props?.stageRef?.current) {
-      props?.stageRef?.current.find("Transformer, .divider").forEach((tf) => {
-        tf.show();
-      });}
+          props?.stageRef?.current
+            .find("Transformer, .divider")
+            .forEach((tf) => {
+              tf.show();
+            });
+        }
       }}
       onMouseEnter={(e) => {
         if (props?.stageRef?.current) {
-      props?.stageRef?.current.find("Transformer, .divider").forEach((tf) => {
-        tf.show();
-      });}
+          props?.stageRef?.current
+            .find("Transformer, .divider")
+            .forEach((tf) => {
+              tf.show();
+            });
+        }
       }}
       onMouseLeave={(e) => {
         if (props?.stageRef?.current) {
-      props?.stageRef?.current.find("Transformer, .divider").forEach((tf) => {
-        tf.hide();
-      });}
+          props?.stageRef?.current
+            .find("Transformer, .divider")
+            .forEach((tf) => {
+              tf.hide();
+            });
+        }
       }}
     >
       <Layer>
