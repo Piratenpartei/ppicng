@@ -27,6 +27,7 @@
     "sass": "^1.37.0",
     "typescript": "^4.3.5",
     "web-vitals": "^0.2.4",
+    "webfontloader": "^1.6.28",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
     "workbox-cacheable-response": "^5.1.4",
@@ -67,6 +68,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.171",
     "@types/react-color": "^3.0.5",
-    "@types/react-router-dom": "^5.1.8"
+    "@types/react-router-dom": "^5.1.8",
+    "@types/webfontloader": "^1.6.33"
   }
 }
