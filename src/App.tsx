@@ -14,6 +14,7 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import Editor from "./components/Editor";
 import designs from "./designs/designs";
 import Konva from "konva";
+import InfoModal from "./components/InfoModal";
 
 let imageScale = 1;
 const onScaleChange = (scale: number) => {
@@ -59,7 +60,8 @@ function App() {
                       <strong>ppic:</strong>ng
                     </Navbar.Brand>
                     <DesignNav designs={designs} />
-                    <Button variant="primary" onClick={() => downloadImage(false)} className="d-md-block d-none">
+                    <InfoModal />
+                    <Button variant="primary" onClick={() => downloadImage(false)} className="ml-1 d-md-block d-none">
                       Download
                     </Button>
                   </Container>
