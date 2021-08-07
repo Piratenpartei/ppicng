@@ -19,6 +19,7 @@ import InfoModal from "./components/InfoModal";
 import LogoModal from "./components/LogoModal";
 import logos0 from "./logos/logos.json";
 import LogoInterface from "./components/interfaces/LogoInterface";
+import LogoGroupInterface from "./components/interfaces/LogoGroupInterface"
 
 let imageScale = 1;
 const onScaleChange = (scale: number) => {
@@ -30,9 +31,11 @@ function App() {
 
   const [pageState, setPageState] = useState(0);
 
-  const logos = logos0 as { [x: string]: LogoInterface };
+  const logos = logos0 as { [x: string]: LogoGroupInterface };
+  const logosFirstGroupKey = Object.keys(logos)[0]
+  const logosFirstLogoKey = Object.keys(logos[logosFirstGroupKey].logos)[0]
 
-  const [logo, setLogo] = useState(Object.keys(logos)[0]);
+  const [logo, setLogo] = useState({group: logosFirstGroupKey, key: logosFirstLogoKey, logo: logos[logosFirstGroupKey].logos[logosFirstLogoKey]});
 
   const downloadImage = (showLines: boolean) => {
     if (stageRef?.current) {
@@ -70,8 +73,9 @@ function App() {
                     <Nav>
                       <DesignNav designs={designs} />
                       <LogoModal
-                        logo={logo || ""}
-                        onChange={(logo) => setLogo(logo)}
+                        logo={logo}
+                        logos={logos}
+                        onChange={(groupname, logoname) => {setLogo({group: groupname, key: logoname, logo: logos[groupname].logos[logoname]})}}
                         designs={designs}
                       />
                     </Nav></Navbar.Collapse>
@@ -128,7 +132,7 @@ function App() {
                   onScaleChange={onScaleChange}
                   stageRef={stageRef}
                   pageState={pageState}
-                  logo={logos[logo]}
+                  logo={logo.logo}
                 />
               </Row>
             </Col>
