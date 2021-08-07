@@ -44,6 +44,7 @@ const DividerH: React.FC<DividerHProps> = ({
       dashEnabled={false}
       dash={[5, 5]}
       name="divider"
+      visible={false}
       draggable
       dragBoundFunc={(pos) => {
         const newpos = {

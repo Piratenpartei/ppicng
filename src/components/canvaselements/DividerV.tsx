@@ -44,6 +44,7 @@ const DividerV: React.FC<DividerVProps> = ({
       dash={[2, 4]}
       name="divider"
       draggable
+      visible={false}
       dragBoundFunc={(pos) => {
         const newpos = {
           y: lineRef.current?.absolutePosition().y as number,
