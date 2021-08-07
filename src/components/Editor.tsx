@@ -7,12 +7,14 @@ import { Container, Col, Spinner } from "react-bootstrap";
 import ResizeObserver from "rc-resize-observer";
 import Konva from "konva";
 import WebFont from "webfontloader";
+import LogoInterface from "./interfaces/LogoInterface";
 
 interface EditorProps {
   designs: Record<string, DesignInterface>;
   onScaleChange?: (scale: number) => void;
   stageRef?: React.RefObject<Konva.Stage>;
   pageState: number;
+  logo: LogoInterface;
 }
 interface EditorParams {
   design: string;
@@ -23,6 +25,7 @@ const Editor: React.FC<EditorProps> = ({
   onScaleChange,
   stageRef,
   pageState,
+  logo
 }) => {
   const { design } = useParams<EditorParams>();
 
@@ -139,6 +142,7 @@ const Editor: React.FC<EditorProps> = ({
                 realHeight={height}
                 stageRef={stageRef}
                 formData={formData}
+                logo={logo}
               />
             )}
             {!fontsLoaded && (

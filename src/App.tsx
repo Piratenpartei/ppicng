@@ -6,6 +6,7 @@ import {
   Navbar,
   Button,
   ButtonGroup,
+  Nav,
 } from "react-bootstrap";
 import "./custom.scss";
 import "./App.css";
@@ -15,6 +16,9 @@ import Editor from "./components/Editor";
 import designs from "./designs/designs";
 import Konva from "konva";
 import InfoModal from "./components/InfoModal";
+import LogoModal from "./components/LogoModal";
+import logos0 from "./logos/logos.json";
+import LogoInterface from "./components/interfaces/LogoInterface";
 
 let imageScale = 1;
 const onScaleChange = (scale: number) => {
@@ -26,7 +30,11 @@ function App() {
 
   const [pageState, setPageState] = useState(0);
 
-  const downloadImage = (showLines:boolean) => {
+  const logos = logos0 as { [x: string]: LogoInterface };
+
+  const [logo, setLogo] = useState(Object.keys(logos)[0]);
+
+  const downloadImage = (showLines: boolean) => {
     if (stageRef?.current) {
       //console.log("test1", stageRef.current.find(".divider"))
       stageRef.current.find("Transformer, .divider").forEach((tf) => {
@@ -39,11 +47,10 @@ function App() {
       link.click();
       document.body.removeChild(link);
       if (showLines) {
-             stageRef.current.find("Transformer, .divider").forEach((tf) => {
-        tf.show();
-             
-      }); 
-    }
+        stageRef.current.find("Transformer, .divider").forEach((tf) => {
+          tf.show();
+        });
+      }
     }
   };
 
@@ -59,9 +66,21 @@ function App() {
                     <Navbar.Brand>
                       <strong>ppic:</strong>ng
                     </Navbar.Brand>
-                    <DesignNav designs={designs} />
+                    <Navbar.Collapse>
+                    <Nav>
+                      <DesignNav designs={designs} />
+                      <LogoModal
+                        logo={logo || ""}
+                        onChange={(logo) => setLogo(logo)}
+                        designs={designs}
+                      />
+                    </Nav></Navbar.Collapse>
                     <InfoModal />
-                    <Button variant="primary" onClick={() => downloadImage(false)} className="ml-1 d-md-block d-none">
+                    <Button
+                      variant="primary"
+                      onClick={() => downloadImage(false)}
+                      className="ml-1 d-md-block d-none"
+                    >
                       Download
                     </Button>
                   </Container>
@@ -73,7 +92,9 @@ function App() {
                     {" "}
                     <ButtonGroup>
                       <Button
-                        variant={pageState === 0 ? "primary" : "outline-primary"}
+                        variant={
+                          pageState === 0 ? "primary" : "outline-primary"
+                        }
                         onClick={() => {
                           setPageState(0);
                         }}
@@ -81,7 +102,9 @@ function App() {
                         Editor
                       </Button>
                       <Button
-                        variant={pageState === 1 ? "primary" : "outline-primary"}
+                        variant={
+                          pageState === 1 ? "primary" : "outline-primary"
+                        }
                         onClick={() => {
                           setPageState(1);
                         }}
@@ -105,6 +128,7 @@ function App() {
                   onScaleChange={onScaleChange}
                   stageRef={stageRef}
                   pageState={pageState}
+                  logo={logos[logo]}
                 />
               </Row>
             </Col>

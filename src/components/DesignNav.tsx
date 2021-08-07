@@ -14,8 +14,6 @@ interface DesignNavParams {
 const DesignNav: React.FC<DesignNavProps> = ({ designs }) => {
   const { design } = useParams<DesignNavParams>();
   return (
-    <Navbar.Collapse>
-      <Nav>
         <NavDropdown id="designnav" title={designs[design].title}>
           {Object.entries(designs).map(([name, design]) => {
             return (
@@ -25,8 +23,6 @@ const DesignNav: React.FC<DesignNavProps> = ({ designs }) => {
             );
           })}
         </NavDropdown>
-      </Nav>
-    </Navbar.Collapse>
   );
 };
 export default DesignNav;

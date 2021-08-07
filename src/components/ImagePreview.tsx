@@ -1,6 +1,7 @@
 import DesignInterface from "./interfaces/DesignInterface";
 import { Stage, Layer } from "react-konva";
 import Konva from "konva";
+import LogoInterface from "./interfaces/LogoInterface";
 
 export interface ImagePreviewProps {
   design: DesignInterface;
@@ -10,6 +11,7 @@ export interface ImagePreviewProps {
   realHeight: number;
   stageRef?: React.RefObject<Konva.Stage>;
   formData: any;
+  logo: LogoInterface
 }
 
 const ImagePreview: React.FC<ImagePreviewProps> = (props) => {
