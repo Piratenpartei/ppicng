@@ -14,6 +14,7 @@ interface AutoScaleTextProps {
   valign?: string;
   shadowEnabled?: boolean;
   eline?: string;
+  elineMarginFactor?: number;
   [x: string]: any;
 }
 
@@ -28,7 +29,9 @@ const wrapText = (
 ): { lines: string[][]; maxWidth: number; lineWidths: Array<number> } => {
   const spaceWidth = calculateTextWidth(" ", fontSize + "px " + font);
 
-  const textParagraphs = (reverse) ? text.split("\n").reverse() : text.split("\n");
+  const textParagraphs = reverse
+    ? text.split("\n").reverse()
+    : text.split("\n");
 
   let lines: string[][] = [];
   let lineWidths: Array<number> = [];
@@ -83,6 +86,7 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
   lineHeight = 1,
   fontFamily,
   eline,
+  elineMarginFactor = 1,
   align = "left",
   valign = "top",
   color = "#000000",
@@ -102,8 +106,8 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
   let lineWidths: Array<number> = [];
   let textHeight = 0;
 
-  let elineHeight = 0
-  let elineMargin = 0
+  let elineHeight = 0;
+  let elineMargin = 0;
 
   let n = 0;
   while (true) {
@@ -118,7 +122,7 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
       height,
       fontFamily,
       lineHeight,
-      valign == "bottom"
+      valign === "bottom"
     );
     lines = probeLines;
     lineWidths = probeLineWidths;
@@ -128,10 +132,10 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
     textHeight = probeHeight;
 
     elineHeight = eline ? baseFontSize / 7 : 0;
-    elineMargin = eline ? baseFontSize / 15 : 0;
+    elineMargin = eline ? baseFontSize / 5 : 0;
 
     const testBaseHeight = baseHeight - elineHeight - elineMargin;
-    const testRatio = baseWidth/testBaseHeight
+    const testRatio = baseWidth / testBaseHeight;
 
     if (probeHeight <= testBaseHeight && probeWidth <= baseWidth) {
       const probeRatio = probeWidth / probeHeight;
@@ -153,53 +157,77 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
     if (n++ > 20) break;
   }
 
-  const fontSize = ((height) / (baseHeight)) * baseFontSize * factor1;
+  const fontSize = (height / baseHeight) * baseFontSize * factor1;
   lineWidths = lineWidths.map((x) => (x * fontSize) / baseFontSize);
   textHeight *= fontSize / baseFontSize;
-  elineHeight *= fontSize / baseFontSize
-  elineMargin *= fontSize / baseFontSize
+  elineHeight *= fontSize / baseFontSize;
+  elineMargin *= fontSize / baseFontSize;
   return (
     <Group x={x} y={y} width={width} height={height}>
       {/* <Rect x={0} y={0} width={width} height={height} stroke="black" /> */}
-      {lines.map((line, index) => (
-        <Text
-          align={align}
-          key={index}
-          text={line.join(" ")}
+      {lines.map((line, index) => {
+        const lineWidth = lineWidths[index];
+        const lineX =
+          align === "right"
+            ? width - lineWidth
+            : align === "center"
+            ? width / 2 - lineWidth / 2
+            : 0;
+        /*         const lineY =
+          -elineHeight -
+          elineMargin +
+          index * fontSize * lineHeight +
+          (valign === "bottom" ? height - textHeight : 0) +
+          (valign === "middle" ? (height - textHeight) / 2 : 0); */
+        const lineY =
+          -(eline ? elineMargin : 0) +
+          (valign === "bottom"
+            ? index * fontSize * lineHeight + height - textHeight
+            : valign === "middle"
+            ? index * fontSize * lineHeight + (height - textHeight) / 2
+            : index * fontSize * lineHeight);
+        return (
+            <Text
+              align={align}
+              key={index}
+              text={line.join(" ")}
+              x={lineX}
+              y={lineY}
+              fontFamily={fontFamily}
+              fontSize={fontSize}
+              fill={color}
+              shadowOffsetX={fontSize / 10}
+              shadowOffsetY={fontSize / 10}
+              shadowBlur={fontSize / 10}
+              shadowEnabled={shadowEnabled}
+              {...additionalProps}
+            />
+        );
+      })}
+      {eline && (
+        <Rect
           x={
             align === "right"
-              ? width - lineWidths[index]
+              ? width - lineWidths[lineWidths.length - 1]
               : align === "center"
-              ? width / 2 - lineWidths[index] / 2
+              ? width / 2 - lineWidths[lineWidths.length - 1] / 2
               : 0
           }
-          y={
-            -elineHeight-elineMargin+index * fontSize * lineHeight +
+          /*           y={
+            lineWidths.length * fontSize * lineHeight +
             (valign === "bottom" ? height - textHeight : 0) +
             (valign === "middle" ? (height - textHeight) / 2 : 0)
-          }
-          fontFamily={fontFamily}
-          fontSize={fontSize}
-          fill={color}
-          shadowOffsetX={fontSize / 10}
-          shadowOffsetY={fontSize / 10}
-          shadowBlur={fontSize / 10}
-          shadowEnabled={shadowEnabled}
-          {...additionalProps}
+          } */
+          y={fontSize -elineHeight+ (valign === "bottom"
+          ? (lineWidths.length - 1) * fontSize * lineHeight + height - textHeight
+          : valign === "middle"
+          ? (lineWidths.length - 1) * fontSize * lineHeight + (height - textHeight) / 2
+          : (lineWidths.length - 1) * fontSize * lineHeight)}
+          height={elineHeight}
+          width={lineWidths[lineWidths.length - 1]}
+          fill={eline}
         />
-      ))}
-      {eline &&
-      <Rect x={
-        align === "right"
-          ? width - lineWidths[lineWidths.length-1]
-          : align === "center"
-          ? width / 2 - lineWidths[lineWidths.length-1] / 2
-          : 0
-      }           y={
-        lineWidths.length * fontSize * lineHeight +
-        (valign === "bottom" ? height - textHeight : 0) +
-        (valign === "middle" ? (height - textHeight) / 2 : 0)
-      } height={elineHeight} width={lineWidths[lineWidths.length-1]} fill={eline} />}
+      )}
     </Group>
   );
 };
