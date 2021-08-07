@@ -28,7 +28,7 @@ const wrapText = (
 ): { lines: string[][]; maxWidth: number; lineWidths: Array<number> } => {
   const spaceWidth = calculateTextWidth(" ", fontSize + "px " + font);
 
-  const textParagraphs = text.split("\n").reverse();
+  const textParagraphs = (reverse) ? text.split("\n").reverse() : text.split("\n");
 
   let lines: string[][] = [];
   let lineWidths: Array<number> = [];
