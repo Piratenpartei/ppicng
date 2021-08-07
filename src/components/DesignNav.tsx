@@ -14,7 +14,7 @@ interface DesignNavParams {
 const DesignNav: React.FC<DesignNavProps> = ({ designs }) => {
   const { design } = useParams<DesignNavParams>();
   return (
-        <NavDropdown id="designnav" title={designs[design].title}>
+        <NavDropdown id="designnav" title={designs[design].title} className="text-white">
           {Object.entries(designs).map(([name, design]) => {
             return (
               <NavDropdown.Item as={NavLink} to={"/" + name} key={name}>

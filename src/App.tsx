@@ -61,7 +61,7 @@ function App() {
           <Container fluid className="vh-100 p-0">
             <Col md={12} className="h-100 flex-column d-flex">
               <Row className="flex-row d-flex">
-                <Navbar className="w-100" bg="dark" variant="dark">
+                <Navbar className="w-100" bg="primary" variant="dark">
                   <Container fluid>
                     <Navbar.Brand>
                       <strong>ppic:</strong>ng
@@ -77,7 +77,7 @@ function App() {
                     </Nav></Navbar.Collapse>
                     <InfoModal />
                     <Button
-                      variant="primary"
+                      variant="light"
                       onClick={() => downloadImage(false)}
                       className="ml-1 d-md-block d-none"
                     >

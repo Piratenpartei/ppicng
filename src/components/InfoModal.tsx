@@ -9,7 +9,7 @@ const InfoModal: React.FC = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="secondary" onClick={handleShow}>
+      <Button variant="light" onClick={handleShow}>
         <InfoCircle />
       </Button>
 
