@@ -25,10 +25,10 @@ const DividerH: React.FC<DividerHProps> = ({
     return Math.max(minY || -Infinity, Math.min(y, maxY || Infinity));
   };
   const lineRef = useRef<Konva.Rect>(null);
-  let baseY = 0;
+  const baseY = useRef(0);
 
   useEffect(() => {
-    baseY = (lineRef?.current?.absolutePosition().y as number) - y;
+    baseY.current = (lineRef?.current?.absolutePosition().y as number) - y;
   });
 
   return (
@@ -48,7 +48,7 @@ const DividerH: React.FC<DividerHProps> = ({
       draggable
       dragBoundFunc={(pos) => {
         const newpos = {
-          y: baseY + limitY(pos.y - baseY),
+          y: baseY.current + limitY(pos.y - baseY.current),
           x: lineRef.current?.absolutePosition().x as number,
         };
         return newpos;

@@ -46,7 +46,7 @@ const Editor: React.FC<EditorProps> = ({
     } else {
       setFontsLoaded(true);
     }
-  }, [design]);
+  }, [design, designs]);
 
   const [formData, setFormData] = useState({});
 

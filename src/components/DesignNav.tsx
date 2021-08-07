@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import DesignInterface from "./interfaces/DesignInterface";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
