@@ -1,7 +1,6 @@
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import logos from "../logos/logos.json";
 import DesignInterface from "./interfaces/DesignInterface";
 import LogoInterface from "./interfaces/LogoInterface";
 import LogoGroupInterface from "./interfaces/LogoGroupInterface";
