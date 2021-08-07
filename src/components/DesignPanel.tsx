@@ -7,6 +7,7 @@ import { AjvError, IChangeEvent } from "@rjsf/core";
 import CircleColorWidget from "./widgets/CircleColorWidget";
 import ToggleButtonWidget from "./widgets/ToggleButtonWidget";
 import BootstrapFileWidget from "./widgets/BootstrapFileWidget";
+import ImageSelectWidget from "./widgets/ImageSelectWidget";
 
 interface DesignPanelProps {
   design: DesignInterface;
@@ -26,6 +27,7 @@ const DesignPanel: React.FC<DesignPanelProps> = ({
     circlecolor: CircleColorWidget,
     togglebutton: ToggleButtonWidget,
     file: BootstrapFileWidget,
+    imageselect: ImageSelectWidget
   };
 
   const transformErrors = (errors: AjvError[]) => {

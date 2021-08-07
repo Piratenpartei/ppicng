@@ -38,11 +38,11 @@ const LogoModal: React.FC<LogoModalProps> = ({logo, onChange, designs}) => {
         <Modal.Header closeButton>
           <Modal.Title>Logo</Modal.Title>
         </Modal.Header>
-        <Modal.Body><div className="cc-selector" onChange={(e) => {handleClose(); onChange((e.target as HTMLInputElement).value);}}>
+        <Modal.Body><div className="imageselector" onChange={(e) => {handleClose(); onChange((e.target as HTMLInputElement).value);}}>
     {Object.entries(logos).map(([name, logo0]) => {
                 
-        return(<>    <input checked={logo===name} type="radio" id={"logo-" + name} value={name} name="logo" />
-        <label className="drinkcard-cc" htmlFor={"logo-" + name} style={{backgroundImage: "url("+logopath(logo0.default).default+")"}}></label></>)
+        return(<>    <input key={"logo-" + name}  checked={logo===name} type="radio" id={"logo-" + name} value={name} name="logo" />
+        <label htmlFor={"logo-" + name} style={{backgroundImage: "url("+logopath(logo0.default).default+")"}}></label></>)
     })}
     
     </div></Modal.Body>
