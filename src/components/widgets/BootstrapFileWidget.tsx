@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { WidgetProps } from "@rjsf/core";
 
-const BootstrapFileWidget: React.FC<WidgetProps> = ({ onChange, value }) => {
+const BootstrapFileWidget: React.FC<WidgetProps> = ({ onChange, value, uiSchema }) => {
   const labelRef = useRef<HTMLLabelElement>(null);
   const label = "test";
 
@@ -16,7 +16,6 @@ const BootstrapFileWidget: React.FC<WidgetProps> = ({ onChange, value }) => {
       reader.readAsDataURL(file);
     }
   };
-
   return (
     <div className="custom-file">
       <label ref={labelRef} className="custom-file-label">
@@ -27,6 +26,7 @@ const BootstrapFileWidget: React.FC<WidgetProps> = ({ onChange, value }) => {
         type="file"
         className="custom-file-input"
         id="customFile"
+        accept={uiSchema["ui:accept"] ? uiSchema["ui:accept"].join(",") : ""}
       />
     </div>
   );
