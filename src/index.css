@@ -26,6 +26,7 @@ code {
   background-position: center;
   display:inline-block;
   width:150px;height:60px;
+  margin: 5px;
   -webkit-transition: all 100ms ease-in;
      -moz-transition: all 100ms ease-in;
           transition: all 100ms ease-in;

@@ -64,7 +64,7 @@ const LogoModal: React.FC<LogoModalProps> = ({
             </a>
           </div>
 
-          <Modal show={show} onHide={handleClose}>
+          <Modal show={show} onHide={handleClose} size="xl">
             <Modal.Header closeButton>
               <Modal.Title>Logo</Modal.Title>
             </Modal.Header>
