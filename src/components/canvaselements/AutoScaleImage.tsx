@@ -30,6 +30,7 @@ export interface AutoScaleImageProps {
   align?: Aligns;
   valign?: VAligns;
   draggable?: boolean
+  [x: string]: any
 }
 
 const AutoScaleImage: React.FC<AutoScaleImageProps> = ({
