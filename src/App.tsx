@@ -20,6 +20,7 @@ import LogoModal from "./components/LogoModal";
 import logos0 from "./logos/logos.json";
 import LogoInterface from "./components/interfaces/LogoInterface";
 import LogoGroupInterface from "./components/interfaces/LogoGroupInterface"
+import PWAButton from "./components/PWAButton";
 
 let imageScale = 1;
 const onScaleChange = (scale: number) => {
@@ -79,9 +80,10 @@ function App() {
                         designs={designs}
                       />
                     </Nav></Navbar.Collapse>
+                    <PWAButton />
                     <InfoModal />
                     <Button
-                      variant="light"
+                      variant="success"
                       onClick={() => downloadImage(false)}
                       className="ml-1 d-md-block d-none"
                     >
@@ -117,7 +119,7 @@ function App() {
                       </Button>
                     </ButtonGroup>
                     <Button
-                      variant="primary"
+                      variant="success"
                       onClick={() => downloadImage(true)}
                       className="ml-5 d-md-none d-block"
                     >
