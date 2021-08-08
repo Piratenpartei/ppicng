@@ -1,5 +1,6 @@
 import { Group, Text, Rect } from "react-konva";
 import calculateTextWidth from "calculate-text-width";
+import React from "react"
 
 interface AutoScaleTextProps {
   text: string;
@@ -15,6 +16,8 @@ interface AutoScaleTextProps {
   shadowEnabled?: boolean;
   eline?: string;
   elineMarginFactor?: number;
+  bgColor?: string;
+  bgYOffsetFactor?: number
   [x: string]: any;
 }
 
@@ -91,6 +94,8 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
   valign = "top",
   color = "#000000",
   shadowEnabled = false,
+  bgColor,
+  bgYOffsetFactor = 0,
   ...additionalProps
 }) => {
   const ratio = width / height;
@@ -162,8 +167,14 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
   textHeight *= fontSize / baseFontSize;
   elineHeight *= fontSize / baseFontSize;
   elineMargin *= fontSize / baseFontSize;
+
+  const bgMarginX = (bgColor) ? fontSize/10 : 0
+  const maxLineWidth = Math.max(...lineWidths)
+  const bgScale = (bgColor) ? (maxLineWidth-bgMarginX*2)/maxLineWidth : 1
+
   return (
     <Group x={x} y={y} width={width} height={height}>
+      <Group x={bgMarginX} scaleX={bgScale} scaleY={bgScale}>
       {/* <Rect x={0} y={0} width={width} height={height} stroke="black" /> */}
       {lines.map((line, index) => {
         const lineWidth = lineWidths[index];
@@ -187,6 +198,17 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
             ? index * fontSize * lineHeight + (height - textHeight) / 2
             : index * fontSize * lineHeight);
         return (
+          <React.Fragment key={"frag"+ index}>
+            {bgColor && (
+              <Rect
+                key={"rect"+ index}
+                x={lineX-fontSize/10}
+                y={lineY+fontSize*bgYOffsetFactor-fontSize/20}
+                width={lineWidth+fontSize/5}
+                height={fontSize+fontSize/10}
+                fill={bgColor}
+              />
+            )}
             <Text
               align={align}
               key={index}
@@ -202,8 +224,10 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
               shadowEnabled={shadowEnabled}
               {...additionalProps}
             />
+          </React.Fragment>
         );
       })}
+      </Group>
       {eline && (
         <Rect
           x={
@@ -218,11 +242,18 @@ const AutoScaleText: React.FC<AutoScaleTextProps> = ({
             (valign === "bottom" ? height - textHeight : 0) +
             (valign === "middle" ? (height - textHeight) / 2 : 0)
           } */
-          y={fontSize -elineHeight+ (valign === "bottom"
-          ? (lineWidths.length - 1) * fontSize * lineHeight + height - textHeight
-          : valign === "middle"
-          ? (lineWidths.length - 1) * fontSize * lineHeight + (height - textHeight) / 2
-          : (lineWidths.length - 1) * fontSize * lineHeight)}
+          y={
+            fontSize -
+            elineHeight +
+            (valign === "bottom"
+              ? (lineWidths.length - 1) * fontSize * lineHeight +
+                height -
+                textHeight
+              : valign === "middle"
+              ? (lineWidths.length - 1) * fontSize * lineHeight +
+                (height - textHeight) / 2
+              : (lineWidths.length - 1) * fontSize * lineHeight)
+          }
           height={elineHeight}
           width={lineWidths[lineWidths.length - 1]}
           fill={eline}
