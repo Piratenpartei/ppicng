@@ -11,7 +11,7 @@ export interface ImagePreviewProps {
   realHeight: number;
   stageRef?: React.RefObject<Konva.Stage>;
   formData: any;
-  logo: LogoInterface
+  logo?: LogoInterface
 }
 
 const ImagePreview: React.FC<ImagePreviewProps> = (props) => {

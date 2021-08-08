@@ -14,7 +14,7 @@ interface EditorProps {
   onScaleChange?: (scale: number) => void;
   stageRef?: React.RefObject<Konva.Stage>;
   pageState: number;
-  logo: LogoInterface;
+  logo?: LogoInterface;
 }
 interface EditorParams {
   design: string;
