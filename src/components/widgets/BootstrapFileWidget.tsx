@@ -10,8 +10,8 @@ const BootstrapFileWidget: React.FC<WidgetProps> = ({ onChange, value }) => {
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = (ev) => {
-        //onChange('name:' + file.name + ';' + ev.target?.result)
-        onChange(ev.target?.result);
+        const newfile = (ev.target?.result as string).split(";")
+        onChange(newfile[0] + ";" + 'name:' + file.name + ";" + newfile.slice(1).join(";"))
       };
       reader.readAsDataURL(file);
     }
@@ -20,7 +20,7 @@ const BootstrapFileWidget: React.FC<WidgetProps> = ({ onChange, value }) => {
   return (
     <div className="custom-file">
       <label ref={labelRef} className="custom-file-label">
-        {value?.split(";")[0].split(":")[1] || "Durchsuchen..."}
+        {value?.split(";")[1].split(":")[1] || "Kein Bild ausgewählt"}
       </label>
       <input
         onChange={onInputChange}
