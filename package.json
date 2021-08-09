@@ -1,6 +1,6 @@
 {
   "name": "ppicng",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@rjsf/bootstrap-4": "^3.0.0",
