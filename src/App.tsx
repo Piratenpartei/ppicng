@@ -34,6 +34,8 @@ function App() {
 
   const logos = logos0 as { [x: string]: LogoGroupInterface };
 
+  let filename = "ppic"
+
 
 
   //const logosFirstGroupKey = Object.keys(logos)[0];
@@ -48,7 +50,8 @@ function App() {
         tf.hide();
       });
       var link = document.createElement("a");
-      link.download = "ppic.png";
+      const newFilename = filename.replace(/[^\w]/ig, "").substring(0,32)
+      link.download = (newFilename !== "") ? newFilename + ".png" : "ppic.png";
       link.href = stageRef.current.toDataURL({ pixelRatio: imageScale });
       document.body.appendChild(link);
       link.click();
@@ -145,6 +148,7 @@ function App() {
                   stageRef={stageRef}
                   pageState={pageState}
                   logo={logo?.logo}
+                  setFilename={filenameNew => {filename = filenameNew}}
                 />
               </Row>
             </Col>
