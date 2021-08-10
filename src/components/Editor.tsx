@@ -15,6 +15,7 @@ interface EditorProps {
   stageRef?: React.RefObject<Konva.Stage>;
   pageState: number;
   logo?: LogoInterface;
+  setFilename?: (filename: string) => void;
 }
 interface EditorParams {
   design: string;
@@ -25,7 +26,8 @@ const Editor: React.FC<EditorProps> = ({
   onScaleChange,
   stageRef,
   pageState,
-  logo
+  logo,
+  setFilename,
 }) => {
   const { design } = useParams<EditorParams>();
 
@@ -118,6 +120,10 @@ const Editor: React.FC<EditorProps> = ({
                 const [locWidth, locHeight] = e.formData?.size?.size.split("x");
                 setWidth(Number(locWidth));
                 setHeight(Number(locHeight));
+              }
+              if (setFilename && e.formData?.claim?.text) {
+                const filename = e.formData?.claim?.text.replace(/[^\w]/ig, "");
+                setFilename(filename);
               }
             }}
           ></DesignPanel>

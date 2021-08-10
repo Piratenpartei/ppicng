@@ -20,7 +20,6 @@ import LogoModal from "./components/LogoModal";
 import logos0 from "./logos/logos.json";
 import LogoInterface from "./components/interfaces/LogoInterface";
 import LogoGroupInterface from "./components/interfaces/LogoGroupInterface";
-import { isUndefined } from "util";
 
 let imageScale = 1;
 const onScaleChange = (scale: number) => {
@@ -33,6 +32,8 @@ function App() {
   const [pageState, setPageState] = useState(0);
 
   const logos = logos0 as { [x: string]: LogoGroupInterface };
+
+  let filename = "ppic"
 
 
 
@@ -48,7 +49,8 @@ function App() {
         tf.hide();
       });
       var link = document.createElement("a");
-      link.download = "ppic.png";
+      const newFilename = filename.replace(/[^\w]/ig, "").substring(0,32)
+      link.download = (newFilename !== "") ? newFilename + ".png" : "ppic.png";
       link.href = stageRef.current.toDataURL({ pixelRatio: imageScale });
       document.body.appendChild(link);
       link.click();
@@ -144,6 +146,7 @@ function App() {
                   stageRef={stageRef}
                   pageState={pageState}
                   logo={logo?.logo}
+                  setFilename={filenameNew => {filename = filenameNew}}
                 />
               </Row>
             </Col>
