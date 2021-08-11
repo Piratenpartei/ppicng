@@ -23,6 +23,7 @@ import LogoGroupInterface from "./components/interfaces/LogoGroupInterface"
 import PWAButton from "./components/PWAButton";
 import PiwikReactRouter from 'piwik-react-router';
 import { createBrowserHistory } from "history"
+import pjson from "../package.json"
 
 
 const history = createBrowserHistory();
@@ -57,7 +58,8 @@ function App() {
       //console.log("test1", stageRef.current.find(".divider"))
 
       if (!disableMatomo) {
-        piwik.push(['trackEvent', window.location.pathname, 'download'])
+        console.log(pjson.version)
+        piwik.push(['trackEvent', window.location.pathname, 'download', undefined, undefined, {dimension1: pjson.version}])
       }
 
       //trackEvent({ category: window.location.pathname        , action: 'download' })
