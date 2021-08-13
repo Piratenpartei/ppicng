@@ -21,7 +21,7 @@ import logos0 from "./logos/logos.json";
 import LogoInterface from "./components/interfaces/LogoInterface";
 import LogoGroupInterface from "./components/interfaces/LogoGroupInterface"
 import PWAButton from "./components/PWAButton";
-import PiwikReactRouter from 'piwik-react-router';
+import PiwikReactRouter from "piwik-react-router";
 import { createBrowserHistory } from "history"
 import pjson from "../package.json"
 
