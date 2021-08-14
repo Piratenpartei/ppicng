@@ -8,6 +8,8 @@ import CircleColorWidget from "./widgets/CircleColorWidget";
 import ToggleButtonWidget from "./widgets/ToggleButtonWidget";
 import BootstrapFileWidget from "./widgets/BootstrapFileWidget";
 import ImageSelectWidget from "./widgets/ImageSelectWidget";
+import React from "react"
+import ObjectFieldTemplate from "./widgets/ObjectFieldTemplate";
 
 interface DesignPanelProps {
   design: DesignInterface;
@@ -45,6 +47,8 @@ const DesignPanel: React.FC<DesignPanelProps> = ({
     return newErrors;
   };
 
+
+
   return (
     <Form
       liveValidate
@@ -55,6 +59,7 @@ const DesignPanel: React.FC<DesignPanelProps> = ({
       widgets={widgets}
       showErrorList={false}
       transformErrors={transformErrors}
+      ObjectFieldTemplate={ObjectFieldTemplate}
     >
       <div></div>
     </Form>

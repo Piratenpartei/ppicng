@@ -24,7 +24,8 @@ import PWAButton from "./components/PWAButton";
 import PiwikReactRouter from "piwik-react-router";
 import { createBrowserHistory } from "history"
 import pjson from "../package.json"
-
+import AdvancedOptionSwitch from "./components/AdvancedOptionSwitch";
+import { Download } from "react-bootstrap-icons";
 
 const history = createBrowserHistory();
 const piwik = PiwikReactRouter({
@@ -46,12 +47,14 @@ function App() {
 
   const logos = logos0 as { [x: string]: LogoGroupInterface };
 
-  let filename = "ppic"
+  let filename = "ppic";
 
   //const logosFirstGroupKey = Object.keys(logos)[0];
   //const logosFirstLogoKey = Object.keys(logos[logosFirstGroupKey].logos)[0];
 
-  const [logo, setLogo]  = useState<{ group: string; key: string; logo: LogoInterface } | undefined>(undefined);
+  const [logo, setLogo] = useState<
+    { group: string; key: string; logo: LogoInterface } | undefined
+  >(undefined);
 
   const downloadImage = (showLines: boolean) => {
     if (stageRef?.current) {
@@ -68,8 +71,8 @@ function App() {
         tf.hide();
       });
       var link = document.createElement("a");
-      const newFilename = filename.replace(/[^\w]/ig, "").substring(0,32)
-      link.download = (newFilename !== "") ? newFilename + ".png" : "ppic.png";
+      const newFilename = filename.replace(/[^\w]/gi, "").substring(0, 32);
+      link.download = newFilename !== "" ? newFilename + ".png" : "ppic.png";
       link.href = stageRef.current.toDataURL({ pixelRatio: imageScale });
       document.body.appendChild(link);
       link.click();
@@ -113,12 +116,14 @@ function App() {
                     </Navbar.Collapse>
                     <PWAButton />
                     <InfoModal disableMatomo={disableMatomo} setDisableMatomo={setDisableMatomo} />
+                    <AdvancedOptionSwitch designs={designs} />
                     <Button
                       variant="success"
                       onClick={() => downloadImage(false)}
                       className="ml-1 d-md-block d-none"
+                      title="Download"
                     >
-                      Download
+                      <Download></Download>
                     </Button>
                   </Container>
                 </Navbar>
@@ -153,6 +158,7 @@ function App() {
                       variant="success"
                       onClick={() => downloadImage(true)}
                       className="ml-5 d-md-none d-block"
+                      title="Download"
                     >
                       Download
                     </Button>
@@ -166,7 +172,9 @@ function App() {
                   stageRef={stageRef}
                   pageState={pageState}
                   logo={logo?.logo}
-                  setFilename={filenameNew => {filename = filenameNew}}
+                  setFilename={(filenameNew) => {
+                    filename = filenameNew;
+                  }}
                 />
               </Row>
             </Col>

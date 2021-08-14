@@ -1,6 +1,6 @@
 import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
-import { InfoCircle } from "react-bootstrap-icons"
+import { InfoCircle } from "react-bootstrap-icons";
 
 interface InfoModalProps {
   disableMatomo: boolean;
@@ -14,7 +14,7 @@ const InfoModal: React.FC<InfoModalProps> = ({disableMatomo, setDisableMatomo}) 
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="light" onClick={handleShow} className="ml-1">
+      <Button title="Info" variant="light" onClick={handleShow} className="ml-1">
         <InfoCircle />
       </Button>
 
