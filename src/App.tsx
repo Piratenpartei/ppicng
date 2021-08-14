@@ -94,7 +94,7 @@ function App() {
                     </Navbar.Collapse>
                     <InfoModal />
                     <Button
-                      variant="light"
+                      variant="success"
                       onClick={() => downloadImage(false)}
                       className="ml-1 d-md-block d-none"
                     >
@@ -130,7 +130,7 @@ function App() {
                       </Button>
                     </ButtonGroup>
                     <Button
-                      variant="primary"
+                      variant="success"
                       onClick={() => downloadImage(true)}
                       className="ml-5 d-md-none d-block"
                     >
