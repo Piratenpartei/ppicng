@@ -1,1 +1,1 @@
-declare module 'piwik-react-router';
+declare module "piwik-react-router";
