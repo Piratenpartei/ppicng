@@ -33,6 +33,7 @@ const AdvancedOptionSwitch: React.FC<AdvancedOptionSwitchProps> = ({
           onClick={() => {
             setAdvancedActive(!advancedActive);
           }}
+          title="Erweiterte Einstellungen"
         >
           <Hammer />
         </Button>
