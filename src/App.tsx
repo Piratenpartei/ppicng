@@ -20,6 +20,8 @@ import LogoModal from "./components/LogoModal";
 import logos0 from "./logos/logos.json";
 import LogoInterface from "./components/interfaces/LogoInterface";
 import LogoGroupInterface from "./components/interfaces/LogoGroupInterface";
+import AdvancedOptionSwitch from "./components/AdvancedOptionSwitch";
+import { Download } from "react-bootstrap-icons";
 
 let imageScale = 1;
 const onScaleChange = (scale: number) => {
@@ -93,12 +95,13 @@ function App() {
                       </Nav>
                     </Navbar.Collapse>
                     <InfoModal />
+                    <AdvancedOptionSwitch designs={designs} />
                     <Button
                       variant="success"
                       onClick={() => downloadImage(false)}
                       className="ml-1 d-md-block d-none"
                     >
-                      Download
+                      <Download></Download>
                     </Button>
                   </Container>
                 </Navbar>

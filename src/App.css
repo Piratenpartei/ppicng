@@ -22,3 +22,7 @@
 .circle-picker > span > div > span > div {
   border: 1px solid #aaa;
 }
+
+.form-advanced {
+  display: none !important;
+}

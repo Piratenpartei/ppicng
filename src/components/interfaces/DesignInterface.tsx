@@ -8,4 +8,5 @@ export default interface DesignInterface {
   Image: React.FC<ImagePreviewProps>;
   fontFamilies?: string[];
   logoActive?: boolean;
+  advancedOptionsAvailable?: boolean;
 }
