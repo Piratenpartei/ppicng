@@ -72,8 +72,8 @@ function App() {
       });
       var link = document.createElement("a");
       const newFilename = filename.replace(/[^\w]/gi, "").substring(0, 32);
-      link.download = newFilename !== "" ? newFilename + ".png" : "ppic.png";
-      link.href = stageRef.current.toDataURL({ pixelRatio: imageScale });
+      link.download = newFilename !== "" ? newFilename + ".jpg" : "ppic.jpg";
+      link.href = stageRef.current.toDataURL({ pixelRatio: imageScale, mimeType: "image/jpeg" });
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
