@@ -20,7 +20,7 @@ const InfoModal: React.FC<InfoModalProps> = ({disableMatomo, setDisableMatomo}) 
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>ppig:ng</Modal.Title>
+          <Modal.Title>ppic:ng</Modal.Title>
         </Modal.Header>
         <Modal.Body><p>Dieser Generator ist ein privates Angebot von <a href="https://twitter.com/stoppegp">@stoppegp</a> für Mitglieder und Sympathisanten der <a href="https://piratenpartei.de">Piratenpartei</a>. Die erstellten Bilder müssen im Einklang mit den <a href="https://wiki.piratenpartei.de/Parteiprogramm">Grundsätzen</a> der Piratenpartei sein.<br /><br />Die Verantwortung für die erstellten Bilder liegen ausschließlich beim Nutzer!<br /><br />Wünsche, Anregungen und Kritik gerne an <a href="mailto:piraten@stoppe-gp.de">piraten@stoppe-gp.de</a>.<br /><br /><br /><a href="https://legacy.ppic.stoppe-gp.de">Zum alten Generator</a><br /><br /><a href="https://legacy.ppiceu.stoppe-gp.de">Zum alten EU-Generator</a>
         </p><h5>Datenschutz</h5><p>Zu Analysezwecken werden die Anzahl der Downloads pro Design gespeichert und auf ein Statistikserver hochgeladen. Hierzu wird die Software <em>Matomo</em> verwendet.
