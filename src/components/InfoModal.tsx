@@ -15,7 +15,7 @@ const InfoModal: React.FC = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>ppig:ng</Modal.Title>
+          <Modal.Title>ppic:ng</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Dieser Generator ist ein privates Angebot von{" "}
