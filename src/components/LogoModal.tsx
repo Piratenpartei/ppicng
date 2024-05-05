@@ -42,9 +42,13 @@ const LogoModal: React.FC<LogoModalProps> = ({
 
   useEffect(() => {
     if (!logo || !Object.keys(logos0).includes(logo.group) || !Object.keys(logos0[logo.group].logos).includes(logo.key)) {
-      const firstGroup = Object.keys(logos0)[0];
-      const firstLogo = Object.keys(logos0[firstGroup].logos)[0];
-      onChange(firstGroup, firstLogo);
+      if (designs[design].defaultLogoGroup && designs[design].defaultLogo) {
+        onChange(designs[design].defaultLogoGroup!, designs[design].defaultLogo!);
+      } else {
+        const firstGroup = Object.keys(logos0)[0];
+        const firstLogo = Object.keys(logos0[firstGroup].logos)[0];
+        onChange(firstGroup, firstLogo);
+      }
     }
   });
 

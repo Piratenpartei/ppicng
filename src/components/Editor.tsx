@@ -8,6 +8,8 @@ import ResizeObserver from "rc-resize-observer";
 import Konva from "konva";
 import WebFont from "webfontloader";
 import LogoInterface from "./interfaces/LogoInterface";
+import Protect from 'react-app-protect'
+import 'react-app-protect/dist/index.css'
 
 interface EditorProps {
   designs: Record<string, DesignInterface>;
@@ -97,7 +99,7 @@ const Editor: React.FC<EditorProps> = ({
     }
   };
 
-  return (
+  const mainPage = (
     <>
       <Col
         md={5}
@@ -161,6 +163,11 @@ const Editor: React.FC<EditorProps> = ({
       </ResizeObserver>
     </>
   );
+  if (designs[design].passwordHash) {
+    return (<Protect boxTitle="Dieses Design ist geschützt." sha512={designs[design].passwordHash}>{mainPage}</Protect>);
+  } else {
+    return mainPage;
+  }
 };
 
 export default Editor;
