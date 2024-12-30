@@ -1,0 +1,6 @@
+[submodule "src/logos"]
+	path = src/logos
+	url = https://github.com/stoppegp/ppicng-logos-piraten.git
+[submodule "src/designs"]
+	path = src/designs
+	url = https://github.com/stoppegp/ppicng-designs-piraten.git
