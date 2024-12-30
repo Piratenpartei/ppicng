@@ -13,9 +13,6 @@ interface LogoModalProps {
   logos: { [x: string]: LogoGroupInterface };
 }
 
-interface EditorParams {
-  design: string;
-}
 
 const LogoModal: React.FC<LogoModalProps> = ({
   logo,
@@ -27,7 +24,7 @@ const LogoModal: React.FC<LogoModalProps> = ({
 
   const logopath = require.context("../logos", true, /\.(jpg|png)$/);
 
-  const { design } = useParams<EditorParams>();
+  const { design } = useParams()  as { design: string };
   const logoActive = designs[design]?.logoActive || false;
 
   let logos0: { [x: string]: LogoGroupInterface } = {};
@@ -42,9 +39,13 @@ const LogoModal: React.FC<LogoModalProps> = ({
 
   useEffect(() => {
     if (!logo || !Object.keys(logos0).includes(logo.group) || !Object.keys(logos0[logo.group].logos).includes(logo.key)) {
-      const firstGroup = Object.keys(logos0)[0];
-      const firstLogo = Object.keys(logos0[firstGroup].logos)[0];
-      onChange(firstGroup, firstLogo);
+      if (designs[design].defaultLogoGroup && designs[design].defaultLogo) {
+        onChange(designs[design].defaultLogoGroup!, designs[design].defaultLogo!);
+      } else {
+        const firstGroup = Object.keys(logos0)[0];
+        const firstLogo = Object.keys(logos0[firstGroup].logos)[0];
+        onChange(firstGroup, firstLogo);
+      }
     }
   });
 

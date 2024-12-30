@@ -11,17 +11,28 @@ import {
 import "./custom.scss";
 import "./App.css";
 import DesignNav from "./components/DesignNav";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { Router, Route, Redirect, Switch } from "react-router-dom";
 import Editor from "./components/Editor";
-import designs from "./designs/designs";
+import designs from "./designs";
 import Konva from "konva";
 import InfoModal from "./components/InfoModal";
 import LogoModal from "./components/LogoModal";
 import logos0 from "./logos/logos.json";
 import LogoInterface from "./components/interfaces/LogoInterface";
-import LogoGroupInterface from "./components/interfaces/LogoGroupInterface";
+import LogoGroupInterface from "./components/interfaces/LogoGroupInterface"
+import PWAButton from "./components/PWAButton";
+import PiwikReactRouter from "piwik-react-router";
+import { createBrowserHistory } from "history"
+import pjson from "../package.json"
 import AdvancedOptionSwitch from "./components/AdvancedOptionSwitch";
 import { Download } from "react-bootstrap-icons";
+
+const history = createBrowserHistory();
+const piwik = PiwikReactRouter({
+	url: process.env.REACT_APP_MATOMO_URL,
+	siteId: process.env.REACT_APP_MATOMO_SITEID,
+  enableLinkTracking: false
+});
 
 let imageScale = 1;
 const onScaleChange = (scale: number) => {
@@ -32,6 +43,9 @@ function App() {
   const stageRef = useRef<Konva.Stage>(null);
 
   const [pageState, setPageState] = useState(0);
+  const [disableMatomoLocal, setDisableMatomo] = useState<boolean>((localStorage.getItem("disable-matomo") && localStorage.getItem("disable-matomo") === "true") ? true : false)
+  const disableMatomo = disableMatomoLocal || process.env.REACT_APP_MATOMO_ENABLE != "true"
+
 
   const logos = logos0 as { [x: string]: LogoGroupInterface };
 
@@ -47,6 +61,14 @@ function App() {
   const downloadImage = (showLines: boolean) => {
     if (stageRef?.current) {
       //console.log("test1", stageRef.current.find(".divider"))
+
+      if (!disableMatomo) {
+        console.log(pjson.version)
+        piwik.push(['trackEvent', window.location.pathname, 'download', undefined, undefined, {dimension1: pjson.version}])
+      }
+
+      //trackEvent({ category: window.location.pathname        , action: 'download' })
+
       stageRef.current.find("Transformer, .divider").forEach((tf) => {
         tf.hide();
       });
@@ -66,7 +88,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <Router history={piwik.connectToHistory(history, () => {return undefined})}>
       <Switch>
         <Route path={"/:design(" + Object.keys(designs).join("|") + ")"}>
           <Container fluid className="vh-100 p-0">
@@ -94,7 +116,8 @@ function App() {
                         />
                       </Nav>
                     </Navbar.Collapse>
-                    <InfoModal />
+                    <PWAButton />
+                    <InfoModal disableMatomo={disableMatomo} setDisableMatomo={setDisableMatomo} />
                     <AdvancedOptionSwitch designs={designs} />
                     <Button
                       variant="success"
@@ -160,10 +183,10 @@ function App() {
           </Container>
         </Route>
         <Route>
-          <Redirect to={"/" + Object.keys(designs)[0]} />
+          <Redirect to={"/" + (process.env.REACT_APP_DESIGN_DEFAULT || Object.keys(designs)[0])} />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 

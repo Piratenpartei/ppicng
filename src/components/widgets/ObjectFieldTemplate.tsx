@@ -5,8 +5,8 @@ import { ObjectFieldTemplateProps } from "@rjsf/core";
 const ObjectFieldTemplate:React.FC<ObjectFieldTemplateProps> = (props) => {
     console.log("haha", props)
 
-    const className = (props.uiSchema.advancedOnly) ? "form-advanced" : ""
-    const style = (props.uiSchema.advancedOnly) ? {backgroundColor: "#ffc10755", padding: 10} : {}
+    const className = (props.uiSchema && props.uiSchema.advancedOnly) ? "form-advanced" : ""
+    const style = (props.uiSchema && props.uiSchema.advancedOnly) ? {backgroundColor: "#ffc10755", padding: 10} : {}
 
     if (props.title !== "") {
     return (

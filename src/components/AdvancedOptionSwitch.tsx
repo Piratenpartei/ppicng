@@ -14,7 +14,7 @@ interface AdvancedOptionSwitchParams {
 const AdvancedOptionSwitch: React.FC<AdvancedOptionSwitchProps> = ({
   designs,
 }) => {
-  const { design } = useParams<AdvancedOptionSwitchParams>();
+  const { design } = useParams() as { design: string }
 
   const [advancedActive, setAdvancedActive] = useState(false);
 

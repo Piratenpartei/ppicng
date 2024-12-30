@@ -9,4 +9,7 @@ export default interface DesignInterface {
   fontFamilies?: string[];
   logoActive?: boolean;
   advancedOptionsAvailable?: boolean;
+  defaultLogoGroup?: string
+  defaultLogo?: string
+  passwordHash?: string
 }

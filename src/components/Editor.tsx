@@ -8,17 +8,16 @@ import ResizeObserver from "rc-resize-observer";
 import Konva from "konva";
 import WebFont from "webfontloader";
 import LogoInterface from "./interfaces/LogoInterface";
+import Protect from 'react-app-protect'
+import 'react-app-protect/dist/index.css'
 
 interface EditorProps {
   designs: Record<string, DesignInterface>;
   onScaleChange?: (scale: number) => void;
-  stageRef?: React.RefObject<Konva.Stage>;
+  stageRef?: React.RefObject<Konva.Stage | null>;
   pageState: number;
   logo?: LogoInterface;
   setFilename?: (filename: string) => void;
-}
-interface EditorParams {
-  design: string;
 }
 
 const Editor: React.FC<EditorProps> = ({
@@ -29,7 +28,7 @@ const Editor: React.FC<EditorProps> = ({
   logo,
   setFilename,
 }) => {
-  const { design } = useParams<EditorParams>();
+  const { design } = useParams() as { design: string };
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
   useEffect(() => {
@@ -97,7 +96,7 @@ const Editor: React.FC<EditorProps> = ({
     }
   };
 
-  return (
+  const mainPage = (
     <>
       <Col
         md={5}
@@ -161,6 +160,11 @@ const Editor: React.FC<EditorProps> = ({
       </ResizeObserver>
     </>
   );
+  if (process.env['REACT_APP_DESIGN_' + design + '_PASSWORD']) {
+    return (<Protect boxTitle="Dieses Design ist geschützt." sha512={process.env['REACT_APP_DESIGN_' + design + '_PASSWORD']}>{mainPage}</Protect>);
+  } else {
+    return mainPage;
+  }
 };
 
 export default Editor;
