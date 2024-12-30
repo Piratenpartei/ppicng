@@ -17,7 +17,7 @@ This tool was initially created for [the German Pirate Party](https://piratenpar
 * The **Progressive Web App** (PWA) is **mobile friendly** and works **completely offline**
 
 # Getting started
-1. Clone this repository
+1. Clone this repository (make sure to include submodules)
 2. Create an `.env` file by renaming `example.env` and edit it (see below)
 3. Run `npm install` in the main directory
 4. Run `npm start` to start the development server

@@ -35,6 +35,7 @@ const InfoModal: React.FC<InfoModalProps> = ({disableMatomo, setDisableMatomo}) 
         { disableMatomo && process.env.REACT_APP_MATOMO_ENABLE == "true" &&
         <p>Die Datenübertragung ist aktuell deaktiviert. Du kannst sie wieder <a href="#" onClick={() => {localStorage.setItem("disable-matomo", "false"); setDisableMatomo(false)}}>aktivieren.</a></p>
         }
+        <p><a href="https://github.com/stoppegp/ppicng"><strong>ppic</strong>:ng by @stoppegp</a></p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
