@@ -29,8 +29,8 @@ import { Download } from "react-bootstrap-icons";
 
 const history = createBrowserHistory();
 const piwik = PiwikReactRouter({
-	url: 'matomo.stoppe-gp.de',
-	siteId: 1,
+	url: process.env.REACT_APP_MATOMO_URL,
+	siteId: process.env.REACT_APP_MATOMO_SITEID,
   enableLinkTracking: false
 });
 
@@ -43,7 +43,9 @@ function App() {
   const stageRef = useRef<Konva.Stage>(null);
 
   const [pageState, setPageState] = useState(0);
-  const [disableMatomo, setDisableMatomo] = useState<boolean>((localStorage.getItem("disable-matomo") && localStorage.getItem("disable-matomo") === "true") ? true : false)
+  const [disableMatomoLocal, setDisableMatomo] = useState<boolean>((localStorage.getItem("disable-matomo") && localStorage.getItem("disable-matomo") === "true") ? true : false)
+  const disableMatomo = disableMatomoLocal || process.env.REACT_APP_MATOMO_ENABLE != "true"
+
 
   const logos = logos0 as { [x: string]: LogoGroupInterface };
 
@@ -181,7 +183,7 @@ function App() {
           </Container>
         </Route>
         <Route>
-          <Redirect to={"/" + Object.keys(designs)[0]} />
+          <Redirect to={"/" + (process.env.REACT_APP_DESIGN_DEFAULT || Object.keys(designs)[0])} />
         </Route>
       </Switch>
     </Router>

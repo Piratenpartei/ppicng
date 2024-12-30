@@ -16,6 +16,7 @@
     "calculate-text-width": "^0.0.3",
     "canvas-text-wrapper": "^0.10.2",
     "contrast-color": "^1.0.1",
+    "dompurify": "^3.2.3",
     "konva": "^8.1.1",
     "lodash": "^4.17.21",
     "piwik-react-router": "^0.12.1",

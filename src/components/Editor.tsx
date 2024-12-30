@@ -163,8 +163,8 @@ const Editor: React.FC<EditorProps> = ({
       </ResizeObserver>
     </>
   );
-  if (designs[design].passwordHash) {
-    return (<Protect boxTitle="Dieses Design ist geschützt." sha512={designs[design].passwordHash}>{mainPage}</Protect>);
+  if (process.env['REACT_APP_DESIGN_' + design + '_PASSWORD']) {
+    return (<Protect boxTitle="Dieses Design ist geschützt." sha512={process.env['REACT_APP_DESIGN_' + design + '_PASSWORD']}>{mainPage}</Protect>);
   } else {
     return mainPage;
   }

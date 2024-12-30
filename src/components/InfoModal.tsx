@@ -1,6 +1,7 @@
 import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
 import { InfoCircle } from "react-bootstrap-icons";
+import DOMPurify from 'dompurify'
 
 interface InfoModalProps {
   disableMatomo: boolean;
@@ -22,14 +23,16 @@ const InfoModal: React.FC<InfoModalProps> = ({disableMatomo, setDisableMatomo}) 
         <Modal.Header closeButton>
           <Modal.Title>ppic:ng</Modal.Title>
         </Modal.Header>
-        <Modal.Body><p>Dieser Generator ist ein privates Angebot von <a href="https://twitter.com/stoppegp">@stoppegp</a> für Mitglieder und Sympathisanten der <a href="https://piratenpartei.de">Piratenpartei</a>. Die erstellten Bilder müssen im Einklang mit den <a href="https://wiki.piratenpartei.de/Parteiprogramm">Grundsätzen</a> der Piratenpartei sein.<br /><br />Die Verantwortung für die erstellten Bilder liegen ausschließlich beim Nutzer!<br /><br />Wünsche, Anregungen und Kritik gerne an <a href="mailto:piraten@stoppe-gp.de">piraten@stoppe-gp.de</a>.
-        </p><h5>Datenschutz</h5><p>Zu Analysezwecken werden die Anzahl der Downloads pro Design gespeichert und auf ein Statistikserver hochgeladen. Hierzu wird die Software <em>Matomo</em> verwendet.
-          Hierzu wird bei jedem Klick auf die Download-Schaltfläche eine Anfrage an <em>https://matomo.stoppe-gp.de</em> durchgeführt. Dabei wird das aktuell aktive Design mitgeschickt. Die IP-Adresse wird auf dem Server anonymisiert, indem nur die ersten zwei Bytes gespeichert werden. Es werden keinerlei Inhalte der erstellten Grafik gespeichert.
-        </p>
-        { !disableMatomo &&
+        <Modal.Body><p><div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(process.env.REACT_APP_INFO || "") }} /></p>
+        { process.env.REACT_APP_MATOMO_ENABLE == "true" && <h5>Datenschutz</h5> }
+        { process.env.REACT_APP_MATOMO_ENABLE == "true" &&
+        <p>Zu Analysezwecken werden die Anzahl der Downloads pro Design gespeichert und auf ein Statistikserver hochgeladen. Hierzu wird die Software <em>Matomo</em> verwendet.
+          Hierzu wird bei jedem Klick auf die Download-Schaltfläche eine Anfrage an <em>{process.env.REACT_APP_MATOMO_URL}</em> durchgeführt. Dabei wird das aktuell aktive Design mitgeschickt. Die IP-Adresse wird auf dem Server anonymisiert, indem nur die ersten zwei Bytes gespeichert werden. Es werden keinerlei Inhalte der erstellten Grafik gespeichert.
+        </p>}
+        {!disableMatomo && process.env.REACT_APP_MATOMO_ENABLE == "true" &&
         <p>Die Datenübertragung kannst du auch <a href="#" onClick={() => {localStorage.setItem("disable-matomo", "true"); setDisableMatomo(true)}}>deaktivieren.</a></p>
         }
-        { disableMatomo &&
+        { disableMatomo && process.env.REACT_APP_MATOMO_ENABLE == "true" &&
         <p>Die Datenübertragung ist aktuell deaktiviert. Du kannst sie wieder <a href="#" onClick={() => {localStorage.setItem("disable-matomo", "false"); setDisableMatomo(false)}}>aktivieren.</a></p>
         }
         </Modal.Body>
