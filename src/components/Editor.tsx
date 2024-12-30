@@ -14,13 +14,10 @@ import 'react-app-protect/dist/index.css'
 interface EditorProps {
   designs: Record<string, DesignInterface>;
   onScaleChange?: (scale: number) => void;
-  stageRef?: React.RefObject<Konva.Stage>;
+  stageRef?: React.RefObject<Konva.Stage | null>;
   pageState: number;
   logo?: LogoInterface;
   setFilename?: (filename: string) => void;
-}
-interface EditorParams {
-  design: string;
 }
 
 const Editor: React.FC<EditorProps> = ({
@@ -31,7 +28,7 @@ const Editor: React.FC<EditorProps> = ({
   logo,
   setFilename,
 }) => {
-  const { design } = useParams<EditorParams>();
+  const { design } = useParams() as { design: string };
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
   useEffect(() => {

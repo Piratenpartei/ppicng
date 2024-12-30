@@ -26,7 +26,7 @@ const BootstrapFileWidget: React.FC<WidgetProps> = ({ onChange, value, uiSchema 
         type="file"
         className="custom-file-input"
         id="customFile"
-        accept={uiSchema["ui:accept"] ? uiSchema["ui:accept"].join(",") : ""}
+        accept={uiSchema && uiSchema["ui:accept"] ? uiSchema["ui:accept"].join(",") : ""}
       />
     </div>
   );

@@ -9,7 +9,7 @@ export interface ImagePreviewProps {
   height: number;
   realWidth: number;
   realHeight: number;
-  stageRef?: React.RefObject<Konva.Stage>;
+  stageRef?: React.RefObject<Konva.Stage | null>;
   formData: any;
   logo?: LogoInterface
 }
