@@ -111,7 +111,8 @@ You can change some options via environment variables. The recommended way is to
 3. Copy the contents of the `build` folder to your server
 
 # Contribute
-Any contributions you make are **greatly appreciated**.
+I stopped working on this tool a few years ago. To publish it, I made some changes to the code. However, there are still a lot of old dependencies which should be updated. 
+Since I do not use this tool at the moment, I am not actively working on this code. However, I have not abandoned it, so any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
@@ -126,5 +127,6 @@ Don't forget to give the project a star! Thanks again!
 # License
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-# Acknowledgement
-tbd
+# Contact
+
+Martin Stoppler - [Mastodon](https://mastodon.social/@stoppegp)
