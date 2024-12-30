@@ -22,6 +22,7 @@ This tool was initially created for [the German Pirate Party](https://piratenpar
 3. Run `npm install` in the main directory
 4. Run `npm start` to start the development server
 5. Visit http://localhost:3000
+6. 
 # Customization
 
 ## Designs
@@ -93,6 +94,16 @@ If you want to exclude some *logo groups* from specific designs, you can specify
   }
 }
 ```
+## Configuration
+You can change some options via environment variables. The recommended way is to use a file `.env`. If you want to overwrite some variables for your local development server, you can user `.env.local`. See [the React documentation](https://create-react-app.dev/docs/adding-custom-environment-variables/) for more information.
+
+* `REACT_APP_DESIGN_DEFAULT=classic`: The name of the default design. Has to be exacly the same as the folder in `src/designs`.
+* `REACT_APP_DESIGN_xyz_DISABLE=true`: Disables a specific design. Replace `xyz` with the design name.
+* `REACT_APP_DESIGN_xyz_PASSWORD=passwordhash`: Enables password protection for a specific design. Replace `xyz` with the design name and `passwordhash` with the sha512-hash of the password. **Note:** This is not secure at all! If you really want to make sure, that nobody can use this tool for a design, you should restrict the access to the tool itself!
+* `REACT_APP_MATOMO_ENABLE=true`: Enables statistic collection with matomo.
+* `REACT_APP_MATOMO_URL=mymatomoserver.com`: The matomo server.
+* `REACT_APP_MATOMO_SITEID=1`: The matomo site id.
+* `REACT_APP_INFO=text`: Text that is shown after a click on the Info button. Supports HTML.
 
 # Deploy
 1. Change designs and logos (see below)
