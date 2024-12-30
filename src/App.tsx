@@ -13,7 +13,7 @@ import "./App.css";
 import DesignNav from "./components/DesignNav";
 import { Router, Route, Redirect, Switch } from "react-router-dom";
 import Editor from "./components/Editor";
-import designs from "./designs/designs";
+import designs from "./designs";
 import Konva from "konva";
 import InfoModal from "./components/InfoModal";
 import LogoModal from "./components/LogoModal";
