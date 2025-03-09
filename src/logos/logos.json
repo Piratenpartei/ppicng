@@ -1,0 +1,565 @@
+{
+  "common": {
+    "title": "Allgemein",
+    "excludeFromDesigns": ["classic-eu"],
+    "logos": {
+      "piraten": {
+        "title": "Piratenpartei",
+        "default": "./common/piraten_dark.png",
+        "variants": {
+          "dark": "./common/piraten_dark.png",
+          "light": "./common/piraten_light.png"
+        }
+      },
+      "signet": {
+        "title": "Siget",
+        "default": "./common/signet.png"
+      },
+      "signetsimple": {
+        "title": "Siget Einfach",
+        "default": "./common/signetsimple_dark.png",
+        "variants": {
+          "dark": "./common/signetsimple_dark.png",
+          "light": "./common/signetsimple_light.png"
+        }
+      },
+      "queeraten": {
+        "title": "Queeraten",
+        "default": "./common/queeraten.png"
+      },
+      "piratenwaehlen": {
+        "title": "Piraten wählen",
+        "default": "./common/piraten_waehlen.png"
+      }
+    }
+  },
+  "europe": {
+    "title": "Europa",
+    "excludeFromDesigns": ["gp2024"],
+    "logos": {
+      "pirates": {
+        "title": "Pirates",
+        "default": "./europe/pirates_dark.png",
+        "variants": {
+          "dark": "./europe/pirates_dark.png",
+          "light": "./europe/pirates_light.png"
+        }
+      },
+      "europa": {
+        "title": "Piraten Europa",
+        "default": "./europe/europa_dark.png",
+        "variants": {
+          "dark": "./europe/europa_dark.png",
+          "light": "./europe/europa_light.png"
+        }
+      },
+      "claim": {
+        "title": "Claim",
+        "default": "./europe/claim_dark.png",
+        "variants": {
+          "dark": "./europe/claim_dark.png",
+          "light": "./europe/claim_light.png"
+        }
+      },
+      "eudelegation": {
+        "title": "EU-Delegation",
+        "default": "./europe/eudelegation_dark.png",
+        "variants": {
+          "dark": "./europe/eudelegation_dark.png",
+          "light": "./europe/eudelegation_light.png"
+        }
+      },
+      "eudelegationV": {
+        "title": "EU-Delegation Vertikal",
+        "default": "./europe/eudelegationV_dark.png",
+        "variants": {
+          "dark": "./europe/eudelegationV_dark.png",
+          "light": "./europe/eudelegationV_light.png"
+        }
+      },
+      "eudelegationH": {
+        "title": "EU-Delegation Horizontal",
+        "default": "./europe/eudelegationH_dark.png",
+        "variants": {
+          "dark": "./europe/eudelegationH_dark.png",
+          "light": "./europe/eudelegationH_light.png"
+        }
+      },
+      "eudelegationDE": {
+        "title": "deutsche EU-Delegation",
+        "default": "./europe/eudelegationDE.png"
+      }
+    }
+  },
+  "laender": {
+    "title": "Bundesländer",
+    "excludeFromDesigns": ["classic-eu", "gp2024"],
+    "logos": {
+      "bw": {
+        "title": "Baden-Württemberg",
+        "default": "./laender/bw_dark.png",
+        "variants": {
+          "dark": "./laender/bw_dark.png",
+          "light": "./laender/bw_light.png"
+        }
+      },
+      "bayern": {
+        "title": "Bayern",
+        "default": "./laender/bayern_dark.png",
+        "variants": {
+          "dark": "./laender/bayern_dark.png",
+          "light": "./laender/bayern_light.png"
+        }
+      },
+      "hessen": {
+        "title": "Hessen",
+        "default": "./laender/hessen_dark.png",
+        "variants": {
+          "dark": "./laender/hessen_dark.png",
+          "light": "./laender/hessen_light.png"
+        }
+      },
+      "berlin": {
+        "title": "Berlin",
+        "default": "./laender/berlin_dark.png",
+        "variants": {
+          "dark": "./laender/berlin_dark.png",
+          "light": "./laender/berlin_light.png"
+        }
+      },
+      "berlinsignet": {
+        "title": "Berlin Signet",
+        "default": "./laender/berlinsignet_dark.png",
+        "variants": {
+          "dark": "./laender/berlinsignet_dark.png",
+          "light": "./laender/berlinsignet_light.png"
+        }
+      },
+      "berlinimpfbaer": {
+        "title": "Berlin Impfbär",
+        "default": "./laender/berlin_impfbaer_dark.png",
+        "variants": {
+          "dark": "./laender/berlin_impfbaer_dark.png",
+          "light": "./laender/berlin_impfbaer_light.png"
+        }
+      },
+      "sachsen": {
+        "title": "Sachsen",
+        "default": "./laender/sachsen_dark.png"
+      },
+      "rlp": {
+        "title": "Rheinland-Pfalz",
+        "default": "./laender/rlp_dark.png",
+        "variants": {
+          "dark": "./laender/rlp_dark.png",
+          "light": "./laender/rlp_light.png"
+        }
+      },
+      "nrw": {
+        "title": "Nordrhein-Westfalen",
+        "default": "./laender/nrw_dark.png",
+        "variants": {
+          "dark": "./laender/nrw_dark.png",
+          "light": "./laender/nrw_light.png"
+        }
+      },
+      "mettmann": {
+        "title": "KV Mettmann",
+        "default": "./regional/kv_mettmann_signet.png",
+        "variants": {
+          "signet":  "./regional/kv_mettmann_signet.png", 
+          "dark": "./regional/kv_mettmann_dark.png",
+          "light": "./regional/kv_mettmann_light.png"
+        }
+      },
+      "saarland": {
+        "title": "Saarland",
+        "default": "./laender/saarland_dark.png",
+        "variants": {
+          "dark": "./laender/saarland_dark.png",
+          "light": "./laender/saarland_light.png"
+        }
+      },
+      "sh": {
+        "title": "Schleswig-Holstein",
+        "default": "./laender/sh_dark.png"
+      }
+    }
+  },
+  "international": {
+    "title": "International",
+    "excludeFromDesigns": ["classic-eu", "gp2024"],
+    "logos": {
+      "at": {
+        "title": "AT",
+        "default": "./international/at_dark.png",
+        "variants": {
+          "dark": "./international/at_dark.png",
+          "light": "./international/at_light.png"
+        }
+      },
+      "atsignet": {
+        "title": "AT Signet",
+        "default": "./international/atsignet_dark.png"
+      },
+      "cz": {
+        "title": "CZ",
+        "default": "./international/cz_dark.png",
+        "variants": {
+          "dark": "./international/cz_dark.png",
+          "light": "./international/cz_light.png"
+        }
+      },
+      "ppi": {
+        "title": "PPI",
+        "default": "./international/ppi_dark.png",
+        "variants": {
+          "dark": "./international/ppi_dark.png",
+          "light": "./international/ppi_light.png"
+        }
+      },
+      "ppisignet": {
+        "title": "PPI Signet",
+        "default": "./international/ppisignet.png"
+      },
+      "mass": {
+        "title": "Massachusetts",
+        "default": "./international/mass.png"
+      },
+      "us": {
+        "title": "US",
+        "default": "./international/us.png"
+      },
+      "ru": {
+        "title": "RU",
+        "default": "./international/ru.png"
+      },
+      "fr": {
+        "title": "FR",
+        "default": "./international/fr_dark.png",
+        "variants": {
+          "dark": "./international/fr_dark.png",
+          "light": "./international/fr_light.png"
+        }
+      },
+      "catalunya": {
+        "title": "Catalunya",
+        "default": "./international/catalunya_dark.png",
+        "variants": {
+          "dark": "./international/catalunya_dark.png",
+          "light": "./international/catalunya_light.png"
+        }
+      },
+      "graz1": {
+        "title": "Graz 1",
+        "default": "./international/graz1_dark.png",
+        "variants": {
+          "dark": "./international/graz1_dark.png",
+          "light": "./international/graz1_light.png"
+        }
+      },
+      "graz2": {
+        "title": "Graz 2",
+        "default": "./international/graz2_dark.png",
+        "variants": {
+          "dark": "./international/graz2_dark.png",
+          "light": "./international/graz2_light.png"
+        }
+      },
+      "graz3": {
+        "title": "Graz 3",
+        "default": "./international/graz3_dark.png",
+        "variants": {
+          "dark": "./international/graz3_dark.png",
+          "light": "./international/graz3_light.png"
+        }
+      },
+      "graz4": {
+        "title": "Graz 4",
+        "default": "./international/graz4.png"
+      }
+    }
+  },
+  "jupi": {
+    "title": "JuPi",
+    "excludeFromDesigns": ["classic-eu", "gp2024"],
+    "logos": {
+      "jupi1": {
+        "title": "JuPi 1",
+        "default": "./jupi/jupi1.png"
+      },
+      "jupi2": {
+        "title": "JuPi 2",
+        "default": "./jupi/jupi2.png"
+      },
+      "jupi3": {
+        "title": "JuPi 3",
+        "default": "./jupi/jupi3.png"
+      },
+      "jupi4": {
+        "title": "JuPi 4",
+        "default": "./jupi/jupi4.png"
+      },
+      "jupi5": {
+        "title": "JuPi 5",
+        "default": "./jupi/jupi5.png"
+      },
+      "jupilegacy": {
+        "title": "JuPi Legacy",
+        "default": "./jupi/legacy.png"
+      }
+    }
+  },
+  "regional": {
+    "title": "Regional",
+    "excludeFromDesigns": ["classic-eu"],
+    "logos": {
+      "berlinmitte": {
+        "title": "Berlin Mitte",
+        "default": "./regional/berlinmitte_dark.png",
+        "variants": {
+          "dark": "./regional/berlinmitte_dark.png",
+          "light": "./regional/berlinmitte_light.png"
+        }
+      },
+      "enneperuhrsignet": {
+        "title": "Ennepe-Ruhr Signet",
+        "default": "./regional/enneperuhrsignet.png"
+      },
+      "enneperuhr": {
+        "title": "Ennepe-Ruhr",
+        "default": "./regional/enneperuhr_dark.png",
+        "variants": {
+          "dark": "./regional/enneperuhr_dark.png",
+          "light": "./regional/enneperuhr_light.png"
+        }
+      },
+      "goeppingen": {
+        "title": "Göppingen",
+        "default": "./regional/goeppingen_dark.png",
+        "variants": {
+          "dark": "./regional/goeppingen_dark.png",
+          "light": "./regional/goeppingen_light.png"
+        }
+      },
+      "goeppingen24": {
+        "title": "Göppingen 24",
+        "default": "./regional/piratengp24_dark.png",
+        "variants": {
+          "dark": "./regional/piratengp24_dark.png",
+          "light": "./regional/piratengp24_light.png"
+        }
+      },
+      "dus": {
+        "title": "Düsseldorf",
+        "default": "./regional/dus_dark.png",
+        "variants": {
+          "dark": "./regional/dus_dark.png",
+          "light": "./regional/dus_light.png"
+        }
+      },
+      "ulm": {
+        "title": "Ulm/Alb-Donau",
+        "default": "./regional/ulm_dark.png",
+        "variants": {
+          "dark": "./regional/ulm_dark.png",
+          "light": "./regional/ulm_light.png"
+        }
+      },
+      "leipzig": {
+        "title": "Leipzig",
+        "default": "./regional/leipzig.png"
+      },
+      "welzheim": {
+        "title": "Welzheim",
+        "default": "./regional/welzheim_dark.png",
+        "variants": {
+          "dark": "./regional/welzheim_dark.png",
+          "light": "./regional/welzheim_light.png"
+        }
+      },
+      "mainz": {
+        "title": "Mainz",
+        "default": "./regional/mainz_dark.png",
+        "variants": {
+          "dark": "./regional/mainz_dark.png",
+          "light": "./regional/mainz_light.png"
+        }
+      },
+      "oberbayern": {
+        "title": "Oberbayern",
+        "default": "./regional/oberbayern_dark.png",
+        "variants": {
+          "dark": "./regional/oberbayern_dark.png",
+          "light": "./regional/oberbayern_light.png"
+        }
+      },
+      "muenchen": {
+        "title": "München",
+        "default": "./regional/muenchen_dark.png"
+      },
+      "mkk": {
+        "title": "MKK",
+        "default": "./regional/mkk.png"
+      },
+      "mkk2": {
+        "title": "MKK2",
+        "default": "./regional/mkk2_dark.png",
+        "variants": {
+          "dark": "./regional/mkk2_dark.png",
+          "light": "./regional/mkk2_light.png"
+        }
+      },
+      "dresden1": {
+        "title": "Dresden 1",
+        "default": "./regional/dresden1.png"
+      },
+      "dresden2": {
+        "title": "Dresden 2",
+        "default": "./regional/dresden2.png"
+      },
+      "rheinerft1": {
+        "title": "Rhein-Erft",
+        "default": "./regional/rheinerft1_dark.png",
+        "variants": {
+          "dark": "./regional/rheinerft1_dark.png",
+          "light": "./regional/rheinerft1_light.png"
+        }
+      },
+      "rheinerft2": {
+        "title": "Rhein-Erft 2",
+        "default": "./regional/rheinerft2_dark.png",
+        "variants": {
+          "dark": "./regional/rheinerft2_dark.png",
+          "light": "./regional/rheinerft2_light.png"
+        }
+      },
+      "mittelbaden": {
+        "title": "Mittelbaden",
+        "default": "./regional/mittelbaden_dark.png",
+        "variants": {
+          "dark": "./regional/mittelbaden_dark.png",
+          "light": "./regional/mittelbaden_light.png"
+        }
+      },
+      "nbb": {
+        "title": "Nordbrandenburg",
+        "default": "./regional/nbb_dark.png",
+        "variants": {
+          "dark": "./regional/nbb_dark.png",
+          "light": "./regional/nbb_light.png"
+        }
+      },
+      "krefeld": {
+        "title": "Krefeld",
+        "default": "./regional/krefeld_dark.png",
+        "variants": {
+          "dark": "./regional/krefeld_dark.png",
+          "light": "./regional/krefeld_light.png"
+        }
+      },
+      "ottweiler": {
+        "title": "Ottweiler",
+        "default": "./regional/ottweiler_dark.png",
+        "variants": {
+          "dark": "./regional/ottweiler_dark.png",
+          "light": "./regional/ottweiler_light.png"
+        }
+      },
+      "leverkusen": {
+        "title": "Leverkusen",
+        "default": "./regional/leverkusen_dark.png",
+        "variants": {
+          "dark": "./regional/leverkusen_dark.png",
+          "light": "./regional/leverkusen_light.png"
+        }
+      },
+      "ratleverkusen": {
+        "title": "Rat Leverkusen",
+        "default": "./regional/ratleverkusen.png"
+      },
+      "frechen": {
+        "title": "Frechen",
+        "default": "./regional/frechen_dark.png",
+        "variants": {
+          "dark": "./regional/frechen_dark.png",
+          "light": "./regional/frechen_light.png"
+        }
+      },
+      "kerpen": {
+        "title": "Kerpen",
+        "default": "./regional/kerpen_dark.png",
+        "variants": {
+          "dark": "./regional/kerpen_dark.png",
+          "light": "./regional/kerpen_light.png"
+        }
+      },
+      "witten1": {
+        "title": "Witten 1",
+        "default": "./regional/witten1.png"
+      },
+      "witten2": {
+        "title": "Witten 2",
+        "default": "./regional/witten2.png"
+      },
+      "witten3": {
+        "title": "Witten 3",
+        "default": "./regional/witten3.png"
+      },
+      "schwalmeder": {
+        "title": "Schwalm-Eder",
+        "default": "./regional/schwalmeder_dark.png",
+        "variants": {
+          "dark": "./regional/schwalmeder_dark.png",
+          "light": "./regional/schwalmeder_light.png"
+        }
+      },
+      "mettmann": {
+        "title": "Mettmann",
+        "default": "./regional/mettmann_dark.png",
+        "variants": {
+          "dark": "./regional/mettmann_dark.png",
+          "light": "./regional/mettmann_light.png"
+        }
+      },
+      "mettmannsignet": {
+        "title": "Mettmann Signet",
+        "default": "./regional/mettmann_signet.png"
+      }
+    }
+  },
+  "ags": {
+    "title": "AGs",
+    "excludeFromDesigns": ["classic-eu", "gp2024"],
+    "logos": {
+      "gesundheitpflege": {
+        "title": "AG Gesundheit+Pflege",
+        "default": "./ags/gesundheitpflege_dark.png",
+        "variants": {
+          "dark": "./ags/gesundheitpflege_dark.png",
+          "light": "./ags/gesundheitpflege_light.png"
+        }
+      },
+      "gesundheitpflegesignet": {
+        "title": "AG Gesundheit+Pflege Signet",
+        "default": "./ags/gesundheitpflegesignet.png"
+      },
+      "gesundheitpflegemono": {
+        "title": "AG Gesundheit+Pflege Mono",
+        "default": "./ags/gesundheitpflegemono_dark.png",
+        "variants": {
+          "dark": "./ags/gesundheitpflegemono_dark.png",
+          "light": "./ags/gesundheitpflegemono_light.png"
+        }
+      },
+      "gesundheitpflegemonosignet": {
+        "title": "AG Gesundheit+Pflege Mono Signet",
+        "default": "./ags/gesundheitpflegemonosignet.png"
+      },
+      "pflegenotstand": {
+        "title": "Pflegenotstand",
+        "default": "./ags/pflegenotstand.png"
+      }
+    }
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "properties": {
+    "logo": {
+      "type": "null"
+    },
+    "claim": {
+      "properties": {
+        "style": {
+          "type": "string",
+          "default": "claim",
+          "title": "",
+          "oneOf": [
+            { "title": "Claim", "const": "claim" },
+            { "title": "Claim+Text", "const": "claimtext" },
+            { "title": "Zitat", "const": "quote" }
+          ]
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "advanced": {
+          "type": "object",
+          "title": "",
+          "properties": {
+            "font": {
+              "type": "string",
+              "title": "Schriftart",
+              "oneOf": [
+                {"title": "Standard", "const": ""},
+                {"title": "Bebas Neue", "const": "BebasNeue"},
+                {"title": "Politics Head", "const": "PoliticsHead"}
+              ],
+              "default": ""
+            }
+          }
+        }
+      },
+      "dependencies": {
+        "style": {
+          "oneOf": [
+            {
+              "properties": {
+                "style": { "const": "claim" },
+                "text": { "maxLength": 150 }
+              }
+            },
+            {
+              "properties": {
+                "style": { "const": "claimtext" },
+                "text": { "maxLength": 150 },
+                "desc": {
+                  "type": "string",
+                  "title": "Zusatztext",
+                  "default": "Mit Uploadfilter und Linksteuer ist das freie Internet bedroht.",
+                  "maxLength": 500
+                }
+              }
+            },
+            {
+                "properties": {
+                  "style": { "const": "quote" },
+                  "text": { "title": "Zitat" }
+                }
+              }
+          ]
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "title": "Bild",
+      "required": ["style"],
+      "properties": {
+        "style": {
+          "title": "Bild-Stil",
+          "type": "string",
+          "default": "noimage",
+          "oneOf": [
+            {
+              "title": "Kein Bild",
+              "const": "noimage"
+            },
+            {
+              "title": "Nebeneinander (empfohlen)",
+              "const": "sidebyside"
+            },
+            {
+              "title": "Hintergrund",
+              "const": "background"
+            }
+          ]
+        }
+      },
+      "dependencies": {
+        "style": {
+          "oneOf": [
+            {
+              "properties": {
+                "style": {
+                  "const": "noimage"
+                }
+              }
+            },
+            {
+              "properties": {
+                "style": {
+                  "const": "background"
+                },
+                "image": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "properties": {
+                "style": {
+                  "const": "sidebyside"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "position": {
+                  "type": "string",
+                  "default": "right",
+                  "title": "Position",
+                  "oneOf": [
+                    { "title": "Rechts (empfohlen)", "const": "right" },
+                    { "title": "Links", "const": "left" },
+                    { "title": "Oben", "const": "top" },
+                    { "title": "Unten", "const": "bottom" }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
