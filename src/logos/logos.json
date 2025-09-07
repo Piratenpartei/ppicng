@@ -162,16 +162,7 @@
           "dark": "./laender/nrw_dark.png",
           "light": "./laender/nrw_light.png"
         }
-      },
-      "mettmann": {
-        "title": "KV Mettmann",
-        "default": "./regional/kv_mettmann_signet.png",
-        "variants": {
-          "signet":  "./regional/kv_mettmann_signet.png", 
-          "dark": "./regional/kv_mettmann_dark.png",
-          "light": "./regional/kv_mettmann_light.png"
-        }
-      },
+      }, 
       "saarland": {
         "title": "Saarland",
         "default": "./laender/saarland_dark.png",
@@ -494,6 +485,7 @@
           "light": "./regional/kerpen_light.png"
         }
       },
+      
       "witten1": {
         "title": "Witten 1",
         "default": "./regional/witten1.png"
@@ -525,6 +517,22 @@
       "mettmannsignet": {
         "title": "Mettmann Signet",
         "default": "./regional/mettmann_signet.png"
+      },
+      "hilden": {
+        "title": "Hilden",
+        "default": "./regional/hilden_dark.png",
+        "variants": {
+          "dark": "./regional/hilden_dark.png",
+          "light": "./regional/hilden_light.png"
+        }
+      },
+      "hilden_2": {
+        "title": "Hilden 2",
+        "default": "./regional/hilden_2_dark.png",
+        "variants": {
+          "dark": "./regional/hilden_2_dark.png",
+          "light": "./regional/hilden_2_light.png"
+        }
       }
     }
   },
