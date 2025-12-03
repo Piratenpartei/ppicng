@@ -183,7 +183,7 @@ function App() {
           </Container>
         </Route>
         <Route>
-          <Redirect to={"/" + (process.env.REACT_APP_DESIGN_DEFAULT || Object.keys(designs)[0])} />
+          <Redirect to={"/classic"} />
         </Route>
       </Switch>
     </Router>
