@@ -577,16 +577,16 @@
         "title": "Piraten x Humanisten",
         "default": "./lists/piratenxhumanisten_light.png",
         "variants": {
-          "dark": "./lists/piratenxhumanisten_dark.png",
-          "light": "./lists/piratenxhumanisten_light.png"
+          "light": "./lists/piratenxhumanisten_dark.png",
+          "dark": "./lists/piratenxhumanisten_light.png"
         }
       },
       "piratenxhumanisten_square": {
         "title": "Piraten x Humanisten (Quadratisch)",
         "default": "./lists/piratenxhumanisten_square_light.png",
         "variants": {
-          "dark": "./lists/piratenxhumanisten_square_dark.png",
-          "light": "./lists/piratenxhumanisten_square_light.png"
+          "light": "./lists/piratenxhumanisten_square_dark.png",
+          "dark": "./lists/piratenxhumanisten_square_light.png"
         }
       }
     }
