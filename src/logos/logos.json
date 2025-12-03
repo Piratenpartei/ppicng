@@ -573,21 +573,21 @@
   "lists": {
     "title": "Listen",
     "logos": {
-      "piratenxhumanisten_light": {
+      "piratenxhumanisten": {
         "title": "Piraten x Humanisten",
         "default": "./lists/piratenxhumanisten.png",
+        "variants": {
+          "dark": "./lists/piratenxhumanisten_dark.png",
+          "light": "./lists/piratenxhumanisten_light.png"
+        }
       },
-      "piratenxhumanisten_dark": {
-        "title": "Piraten x Humanisten (Dunkel)",
-        "default": "./lists/piratenxhumanisten_dark.png",
-      },
-      "piratenxhumanisten_square_dark": {
-        "title": "Piraten x Humanisten (Quadratisch, Dunkel)",
-        "default": "./lists/piratenxhumanisten_square_dark.png"
-      },
-      "piratenxhumanisten_square_light": {
-        "title": "Piraten x Humanisten (Quadratisch, Hell)",
-        "default": "./lists/piratenxhumanisten_square_light.png"
+      "piratenxhumanisten_square": {
+        "title": "Piraten x Humanisten (Quadratisch)",
+        "default": "./lists/piratenxhumanisten_square.png",
+        "variants": {
+          "dark": "./lists/piratenxhumanisten_square_dark.png",
+          "light": "./lists/piratenxhumanisten_square_light.png"
+        }
       }
     }
   }
